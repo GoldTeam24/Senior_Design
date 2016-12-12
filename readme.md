@@ -34,6 +34,6 @@ $ composer install
 ## generate key
 ```
 #!bash
-$ mv .env.example .env
+$ cp .env.example .env
 $ php artisan key:generate
 ```
