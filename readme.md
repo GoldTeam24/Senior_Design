@@ -21,19 +21,3 @@ $ vagrant up
 #!bash
 $ vagrant ssh
 ```
-## navigate to your Laravel directory
-```
-#!bash
-$ cd ~/Code/Laravel
-```
-## install composer
-```
-#!bash
-$ composer install
-```
-## generate key
-```
-#!bash
-$ cp .env.example .env
-$ php artisan key:generate
-```
