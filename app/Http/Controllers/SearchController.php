@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Concept;
 use Request;
 
-class search extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.

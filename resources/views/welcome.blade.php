@@ -6,6 +6,6 @@
 
                 <div class="links">
                     <a href="{{ url('/search') }}">Search Concepts</a>
-                    </div>
+                </div>
 
 @stop

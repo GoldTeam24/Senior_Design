@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('searchInput', 'search@search');
+Route::resource('searchInput', 'SearchController@search');
 
-Route::get('search', 'search@index');
+Route::get('search', 'SearchController@index');
 
-Route::get('concept/{id}', 'Concept@index');
-
-Route::resource('/', 'homeController');
+Route::get('concept/{id}', 'ConceptController@index');
