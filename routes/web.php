@@ -21,3 +21,4 @@ Route::get('search', 'search@index');
 
 Route::get('concept/{id}', 'Concept@index');
 
+Route::resource('/', 'homeController');
