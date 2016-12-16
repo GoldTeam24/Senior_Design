@@ -8,10 +8,11 @@
 			height: 60px;
 			background-color: #f5f5f5;
 			border-top: 1px solid #e7e7e7;
+			color: #b76e79;
 		}
 	</style>
 </head>
 
 <footer class="footer text-center">
-	&copy; Gold Team <?php echo date("Y"); ?>
+	Gold Team <?php echo date("Y"); ?>
 </footer>
