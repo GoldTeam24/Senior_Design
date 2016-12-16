@@ -18,6 +18,7 @@
     <style type="text/css">
         .panel-heading, .panel-body {
             padding: 5px;
+            position: center;
         }
     </style>
         <style>
@@ -51,7 +52,7 @@
 
             .content {
                 text-align: center;
-                max-width: 60%
+                max-width: 50%
             }
 
             .title {

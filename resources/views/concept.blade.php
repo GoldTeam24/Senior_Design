@@ -14,7 +14,7 @@
     No parent concepts...
     @endif
     @if (count($parentConcepts))
-    <ul>
+    
     @foreach ($parentConcepts as $concept)
         <div class="panel panel-primary">
         <div class="panel-heading text-left"> 
@@ -26,7 +26,6 @@
     </div>
     @endforeach
     
-    </ul>
     @endif
 
 
@@ -35,7 +34,6 @@
     No child concepts...
     @endif
     @if (count($childConcepts))
-    <ul>
     @foreach ($childConcepts as $concept)
         <div class="panel panel-primary">
         <div class="panel-heading text-left"> 
@@ -47,6 +45,5 @@
     </div>
     @endforeach
     
-    </ul>
 @endif
 @stop
