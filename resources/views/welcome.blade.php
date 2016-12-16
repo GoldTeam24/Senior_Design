@@ -1,4 +1,3 @@
-@include('header')
 
 @extends('app')
 @section('content')

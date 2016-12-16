@@ -1,42 +1,52 @@
-@include('header')
 
 @extends('app')
 @section('content')
-                <div class="title m-b-md">
-                    {{ $concept->name }}
-                </div>
-                <br>
-                <p>{{ $concept->description }}
-                <br>
-                <p>{{ $concept->body }}
 
-    
-    <p>Parent Concepts</p>
-    @if (!count($parentConcepts))
+<div class="title m-b-md">
+    {{ $concept->name }} 
+
+    <h3>{{ $concept->description }}</h3>
+
+    <h4>{{ $concept->body }}</h4>
+</div>
+    <h2>Parent Concepts</h2>
+    @if (count($parentConcepts) == 0)
     No parent concepts...
     @endif
     @if (count($parentConcepts))
     <ul>
     @foreach ($parentConcepts as $concept)
-        <li> <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>: {{ $concept->description }}</li>
+        <div class="panel panel-primary">
+        <div class="panel-heading text-left"> 
+            <a href="{{ route('concept', array('id' => $concept->id)) }}" style="color: white">{{ $concept->name }}</a>
+        </div>
+        <div class="panel-body text-left">
+            {{ $concept->description }}
+        </div>
+    </div>
     @endforeach
     
     </ul>
     @endif
 
 
-    <p>Child Concepts</p>
-    @if (!count($parentConcepts))
-    No parent concepts...
+    <h2>Child Concepts</h2>
+    @if (count($childConcepts) == 0)
+    No child concepts...
     @endif
     @if (count($childConcepts))
     <ul>
     @foreach ($childConcepts as $concept)
-        <li> <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>: {{ $concept->description }}</li>
+        <div class="panel panel-primary">
+        <div class="panel-heading text-left"> 
+            <a href="{{ route('concept', array('id' => $concept->id)) }}" style="color: white">{{ $concept->name }}</a>
+        </div>
+        <div class="panel-body text-left">
+            {{ $concept->description }}
+        </div>
+    </div>
     @endforeach
     
     </ul>
 @endif
 @stop
-
-@include('footer')

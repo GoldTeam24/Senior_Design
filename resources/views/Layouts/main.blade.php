@@ -15,7 +15,7 @@
     <nav class="top-bar" data-topbar>
         <ul class="title-area">
             <li class="name">
-                <h1><a href="/">CarlPedia</a></h1>
+                <h1><a href="/">Prerequisite Knowledge</a></h1>
             </li>
         </ul>
     </nav>
