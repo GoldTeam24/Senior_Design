@@ -1,3 +1,4 @@
+@include('header')
 @extends('app')
 @section('content')
 <div class="title m-b-md">
@@ -8,7 +9,8 @@
                            ['required',
                             'class'=>'form-control',
                            'placeholder'=>'Search for a concept...']) !!}
-    {!! Form::submit('search for a concept') !!}
+    {!! Form::submit('Search', ['class' => 'btn btn-default',
+                                                'style' => 'margin-top: 15px']) !!}
     {!! Form::close() !!}
 </div>
 
@@ -26,3 +28,4 @@
     </ul>
 @endif
 @stop
+@include('footer')
