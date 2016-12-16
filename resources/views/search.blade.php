@@ -1,26 +1,34 @@
 @extends('app')
 @section('content')
+<div class="links">
+        <a href="{{ url('/') }}">Home</a>
+</div>
+<br>
 <div class="title m-b-md">
     Search 
-    <br>
-    {!! Form::open(['url' => 'searchInput']) !!}
-    {!! Form::text('searchInput', null,
+    {!! Form::open(['url' => 'search/name']) !!}
+    @if (!count($concepts))
+    {!! Form::text('searchString', null,
                            ['required',
                             'class'=>'form-control',
-                           'placeholder'=>'Search for a concept...']) !!}
-    {!! Form::submit('search for a concept') !!}
+                            'placeholder'=> $searchString ]) !!}
+    @endif
+    @if (count($concepts))
+    {!! Form::text('searchString', $searchString,
+                           ['required',
+                            'class'=>'form-control']) !!}
+    @endif
+    {!! Form::submit('search for a concept', ['style' => 'display: none;']) !!}
     {!! Form::close() !!}
 </div>
 
 
-<div class="links">
-    <a href="{{ url('/') }}">Home</a>
-</div>
+
 
 @if (count($concepts))
     <ul>
     @foreach ($concepts as $concept)
-        <li> {{ $concept->name }}: {{ $concept->body }}</li>
+        <li> <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>: {{ $concept->description }}</li>
     @endforeach
     
     </ul>

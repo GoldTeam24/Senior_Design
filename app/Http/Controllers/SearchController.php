@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
 use App\Models\Concept;
 use Request;
 
@@ -16,9 +15,11 @@ class SearchController extends Controller
     
     public function index()
     {
-        $concepts = Concept::all();
+        $concepts = [ ];
 
-        return view('search', compact('concepts'));
+        $searchString = 'Search for a concept';
+        
+        return view('search', compact('concepts', 'searchString'));
     }
     /**
      * Show the form for creating a new resource.
@@ -28,10 +29,10 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         //
-        $query = Request::input('searchInput');
+        $searchString = Request::input('searchString');
 
-        $concepts = Concept::where('name', 'LIKE', '%' . $query . '%')->get();
+        $concepts = Concept::where('name', 'LIKE', '%' . $searchString . '%')->get();
 
-        return view('search', compact('concepts'));
+        return view('search', compact('concepts','searchString'));
     }
 }
