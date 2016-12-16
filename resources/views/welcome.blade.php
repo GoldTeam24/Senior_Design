@@ -10,5 +10,6 @@
     <div class="links">
         <a href="{{ url('/search') }}">Search Concepts</a>
     </div>
-
 @stop
+
+@include('footer')
