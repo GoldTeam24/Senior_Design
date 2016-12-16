@@ -19,6 +19,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav pull-right">
+                <li><a href="/"> Home </a></li>
+                <li><a href="/search"> Search </a>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Options <span class="caret"></span></a>
                     <ul class="dropdown-menu pull-right">

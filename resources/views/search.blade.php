@@ -1,6 +1,12 @@
 @include('header')
 @extends('app')
 @section('content')
+<head>
+    <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
 <div class="links">
         <a href="{{ url('/') }}">Home</a>
 </div>
@@ -28,12 +34,17 @@
 
 
 @if (count($concepts))
-    <ul>
     @foreach ($concepts as $concept)
-        <li> <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>: {{ $concept->description }}</li>
+    {{-- <ul>
+        <li> {{ $concept->name }}: {{ $concept->body }}</li>
+    </ul> --}}
+    <div class="panel panel-primary">
+        <div class="panel-heading"> {{ $concept->name }} </div>
+        <div class="panel-body">
+            {{ $concept->body }}
+        </div>
+    </div>
     @endforeach
-    
-    </ul>
 @endif
 @stop
 @include('footer')
