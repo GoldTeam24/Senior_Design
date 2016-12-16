@@ -1,3 +1,4 @@
+@include('header')
 @extends('app')
 @section('content')
 <div class="links">
@@ -11,14 +12,15 @@
     {!! Form::text('searchString', null,
                            ['required',
                             'class'=>'form-control',
-                            'placeholder'=> $searchString ]) !!}
+                           'placeholder'=>'Search for a concept...']) !!}
     @endif
     @if (count($concepts))
     {!! Form::text('searchString', $searchString,
                            ['required',
                             'class'=>'form-control']) !!}
     @endif
-    {!! Form::submit('search for a concept', ['style' => 'display: none;']) !!}
+    {!! Form::submit('Search', ['class' => 'btn btn-default',
+                                                'style' => 'margin-top: 15px']) !!}
     {!! Form::close() !!}
 </div>
 
@@ -34,3 +36,4 @@
     </ul>
 @endif
 @stop
+@include('footer')
