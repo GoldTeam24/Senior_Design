@@ -1,16 +1,18 @@
 @include('header')
+
 @extends('app')
 @section('content')
 <head>
     <script src="{{ asset('js/vendor/jquery.js') }}"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .panel-heading, .panel-body {
+            padding: 5px;
+        }
+    </style>
 </head>
 
-<div class="links">
-        <a href="{{ url('/') }}">Home</a>
-</div>
-<br>
 <div class="title m-b-md">
     Search 
     {!! Form::open(['url' => 'search/name']) !!}
@@ -39,12 +41,15 @@
         <li> {{ $concept->name }}: {{ $concept->body }}</li>
     </ul> --}}
     <div class="panel panel-primary">
-        <div class="panel-heading"> {{ $concept->name }} </div>
-        <div class="panel-body">
+        <div class="panel-heading text-left"> 
+            <a href="{{ route('concept', array('id' => $concept->id)) }}" style="color: white">{{ $concept->name }}</a>
+        </div>
+        <div class="panel-body text-left">
             {{ $concept->body }}
         </div>
     </div>
     @endforeach
 @endif
 @stop
-@include('footer')
+
+{{-- @include('footer') --}}
