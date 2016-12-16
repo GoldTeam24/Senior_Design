@@ -32,9 +32,6 @@
     {!! Form::close() !!}
 </div>
 
-
-
-
 @if (count($concepts))
     @foreach ($concepts as $concept)
     {{-- <ul>
@@ -45,11 +42,9 @@
             <a href="{{ route('concept', array('id' => $concept->id)) }}" style="color: white">{{ $concept->name }}</a>
         </div>
         <div class="panel-body text-left">
-            {{ $concept->body }}
+            {{ $concept->description }}
         </div>
     </div>
     @endforeach
 @endif
 @stop
-
-{{-- @include('footer') --}}
