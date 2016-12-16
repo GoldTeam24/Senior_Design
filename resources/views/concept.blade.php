@@ -1,5 +1,9 @@
 @extends('app')
 @section('content')
+    <div class="links">
+        <a href="{{ url('/') }}">Home</a>   
+        <a href="{{ url('/search') }}">Search Concepts</a>
+    </div>
                 <div class="title m-b-md">
                     {{ $concept->name }}
                 </div>
