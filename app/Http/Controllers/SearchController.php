@@ -18,8 +18,10 @@ class SearchController extends Controller
         $concepts = [ ];
 
         $searchString = 'Search for a concept';
+
+        $isSearched = false;
         
-        return view('search', compact('concepts', 'searchString'));
+        return view('search', compact('concepts', 'searchString', 'isSearched'));
     }
     /**
      * Show the form for creating a new resource.
@@ -33,6 +35,8 @@ class SearchController extends Controller
 
         $concepts = Concept::where('name', 'LIKE', '%' . $searchString . '%')->get();
 
-        return view('search', compact('concepts','searchString'));
+        $isSearched = true;
+
+        return view('search', compact('concepts', 'searchString', 'isSearched'));
     }
 }

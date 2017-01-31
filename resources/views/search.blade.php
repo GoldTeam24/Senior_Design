@@ -33,5 +33,7 @@
         </div>
     </div>
     @endforeach
+@elseif ($isSearched === true)
+    <p>No matching results found.</p>
 @endif
 @stop
