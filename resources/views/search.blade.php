@@ -2,38 +2,51 @@
 @extends('app')
 @section('content')
 
-<div class="title m-b-md">
-    Search 
-    {!! Form::open(['url' => 'search/name']) !!}
-    @if (!count($concepts))
-    {!! Form::text('searchString', null,
-                           ['required',
-                            'class'=>'form-control',
-                            'style' => 'min-width: 548.475px']) !!}
-    @endif
-    @if (count($concepts))
-    {!! Form::text('searchString', $searchString,
-                           ['required',
-                            'class'=>'form-control',
-                            'style' => 'min-width: 548.475px;']) !!}
-    @endif
-    {!! Form::submit('Search', ['class' => 'btn btn-default',
-                                                'style' => 'margin-top: 15px']) !!}
-    {!! Form::close() !!}
+<style type="text/css">
+    .concept .panel {
+        border-radius: 0px;
+    }
+</style>
+
+<div class="row">
+    <div class="title text-center"> Search </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        {!! Form::open(['url' => 'search/name']) !!}
+            @if (!count($concepts))
+            {!! Form::text('searchString', null,
+                                   ['required',
+                                    'class'=>'form-control']) !!}
+            @endif
+
+            @if (count($concepts))
+            {!! Form::text('searchString', $searchString,
+                                   ['required',
+                                    'class'=>'form-control']) !!}
+            @endif
+
+            {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',
+                                                        'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}
+        {!! Form::close() !!}
+    </div>
 </div>
 
 @if (count($concepts))
-    @foreach ($concepts as $concept)
-    <div class="panel panel-primary">
-        <div class="panel-heading text-left"> 
-            <a href="{{ route('concept', array('id' => $concept->id)) }}" style="color: white">{{ $concept->name }}</a>
-        </div>
-        <div class="panel-body text-left">
-            {{ $concept->description }}
-        </div>
+    <div class="row">
+        @foreach ($concepts as $concept)
+            <div class="concept col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-left"> 
+                        <a title="View concept" href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
+                    </div>
+                    <div class="panel-body text-left">
+                        {{ $concept->description }}
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-    @endforeach
 @elseif ($isSearched === true)
     <p>No matching results found.</p>
 @endif
+
 @stop
