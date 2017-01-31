@@ -52,7 +52,11 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-
+// this debug statement will tell you if you are connected to the database
+//if(DB::connection()->getDatabaseName())
+//{
+//    echo "Connected to database ".DB::connection()->getDatabaseName();
+//}
 $response->send();
 
 $kernel->terminate($request, $response);

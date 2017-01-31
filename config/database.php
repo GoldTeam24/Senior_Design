@@ -1,5 +1,20 @@
 <?php
 
+// because nginx strips all environment variables,
+// if environment variables are empty, then we are in the local env
+if (getenv('RDS_HOSTNAME') == "") {
+    define('RDS_HOSTNAME', "127.0.0.1");
+    define('RDS_USERNAME', "homestead");
+    define('RDS_PASSWORD', "secret");
+    define('RDS_DB_NAME', "homestead");
+}
+// else we are in prod
+else {
+    define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
+    define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
+    define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
+    define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
+}
 return [
 
     /*
@@ -54,11 +69,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => RDS_HOSTNAME,
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => RDS_DB_NAME,
+            'username' => RDS_USERNAME,
+            'password' => RDS_PASSWORD,
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
