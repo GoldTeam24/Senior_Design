@@ -23,6 +23,20 @@
 </div>
 <div class="row">
     <div id="concept-col" class="col-xs-12 col-sm-8">
+      
+            <h2>Processes</h2>
+        
+            @if (count($processes) == 0)
+                No process steps...
+            @endif
+
+            @if (count($processes))
+            @foreach ($processes as $process)
+                    <a href="{{ route('process', array('id' => $process->id)) }}"><h3>{{ $process->name }}</h3></a>
+                    <h4>{{ $process->description }}</h4>
+            @endforeach
+        @endif
+        
         <h2>Parent Concepts</h2>
         
         @if (count($parentConcepts) == 0)

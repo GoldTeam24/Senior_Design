@@ -14,10 +14,10 @@ class CreateConceptConceptTable extends Migration
     public function up()
     {
         Schema::create('concept_concept', function (Blueprint $table) {
-            $table->integer('parentConcept_id')->unsigned();
-            $table->foreign('parentConcept_id')->references('id')->on('concepts');
-            $table->integer('childConcept_id')->unsigned();
-            $table->foreign('childConcept_id')->references('id')->on('concepts');
+            $table->integer('parent_concept_id')->unsigned();
+            $table->foreign('parent_concept_id')->references('id')->on('concepts');
+            $table->integer('child_concept_id')->unsigned();
+            $table->foreign('child_concept_id')->references('id')->on('concepts');
             $table->timestamps();
         });
     }

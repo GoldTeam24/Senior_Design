@@ -111,7 +111,6 @@
                     <a href="{{ url('/register') }}">Register</a>
                 </div>
             @endif
-
             <div class="container-fluid">
                 @yield('content')
             </div>

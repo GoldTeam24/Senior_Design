@@ -89,9 +89,36 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < sizeof($relations); $i += 2)
         {
             DB::table('concept_concept')->insert([
-                'childConcept_id' => $relations[$i],
-                'parentConcept_id' => $relations[$i + 1]
+                'child_concept_id' => $relations[$i],
+                'parent_concept_id' => $relations[$i + 1]
             ]);
         }
+        DB::table('processes')->insert([
+            'id' => 1,
+            'concept_id' => 4,
+            'name' => 'First normal form normalization',
+            'description' => 'A relation is in first normal form if and only if the domain of each attribute contains only atomic (indivisible) values, and the value of each attribute contains only a single value from that domain.'
+        ]);
+        DB::table('process_steps')->insert([
+            'id' => 1,
+            'name' => 'Eliminate tuples',
+            'description' => 'Eliminate repeating tuples in individual tables.',
+            'process_id' => 1,
+            'step' => 1
+        ]);
+        DB::table('process_steps')->insert([
+            'id' => 2,
+            'name' => 'Create tables',
+            'description' => 'Create a separate table for each set of related data.',
+            'process_id' => 1,
+            'step' => 2
+        ]);
+        DB::table('process_steps')->insert([
+            'id' => 3,
+            'name' => 'Identify data',
+            'description' => 'Identify each set of related data with a primary key.',
+            'process_id' => 1,
+            'step' => 3
+        ]);
     }
 }
