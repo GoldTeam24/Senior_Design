@@ -18,7 +18,7 @@ class ConceptController extends Controller
         $concept = Concept::find($conceptId);
         $childConcepts = $concept->childConcepts()->orderBy('name')->get();
         $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
-
-        return view('concept', compact('concept', 'childConcepts', 'parentConcepts'));
+        $processes = $concept->processes()->orderBy('name')->get();
+        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
     }
 }

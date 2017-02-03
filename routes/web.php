@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('search', 'SearchController@index');
+Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
+
+Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index' ]);
 
 Route::resource('search/name', 'SearchController@search');

@@ -12,7 +12,7 @@
 		<h1 class="text-center"> Prerequisite Knowledge </h1>
 
 	    <div class="links text-center">
-	        <a href="{{ url('/search') }}">Search Concepts</a>
+	        <a href="{{ route('search') }}">Search Concepts</a>
 	    </div>
 	</div>
 

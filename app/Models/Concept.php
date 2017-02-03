@@ -9,10 +9,14 @@ class Concept extends Model
     //
     public function parentConcepts()
     {
-        return $this->belongsToMany('App\Models\Concept','concept_concept','parentConcept_id','childConcept_id');
+        return $this->belongsToMany('App\Models\Concept','concept_concept','parent_concept_id','child_concept_id');
     }
     public function childConcepts()
     {
-        return $this->belongsToMany('App\Models\Concept','concept_concept','childConcept_id','parentConcept_id');
+        return $this->belongsToMany('App\Models\Concept','concept_concept','child_concept_id','parent_concept_id');
+    }
+    public function processes()
+    {
+        return $this->hasMany('App\Models\Process');
     }
 }
