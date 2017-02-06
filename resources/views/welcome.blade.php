@@ -1,4 +1,3 @@
-
 @extends('app')
 @section('content')
 
@@ -11,15 +10,9 @@
 	<div class="jumbotron">
 		<h1 class="text-center"> Prerequisite Knowledge </h1>
 
-	    <div class="links text-center">
+	    <div class="text-center">
 	        <a href="{{ route('search') }}">Search Concepts</a>
 	    </div>
 	</div>
 
-    {{-- <div class="title m-b-md">
-        Prerequisite<br>Knowledge
-    </div> --}}
-
 @stop
-
-@include('footer')

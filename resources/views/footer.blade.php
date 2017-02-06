@@ -1,8 +1,17 @@
 <head>
     <style type="text/css">
-    	.footer {
-			position: absolute;
+		html {
+			position: relative;
+			min-height: 100%;
+		}
+
+		body {
+			margin-bottom: 60px;
+		}
+
+		.footer {
 			padding-top: 15px;
+			position: absolute;
 			bottom: 0;
 			width: 100%;
 			height: 60px;

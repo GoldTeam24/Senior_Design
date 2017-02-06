@@ -16,9 +16,9 @@
     <div class="col-xs-12">
         <h1 class="page-header"> {{ $concept->name }} </h1>
 
-        <h3>{{ $concept->description }}</h3>
+        <h4>{{ $concept->description }}</h4>
 
-        <h4>{{ $concept->body }}</h4>
+        <p>{{ $concept->body }}</p>
     </div>
 </div>
 <div class="row">
@@ -27,13 +27,13 @@
             <h2>Processes</h2>
         
             @if (count($processes) == 0)
-                No process steps...
+                <p> No process steps... </p>
             @endif
 
             @if (count($processes))
             @foreach ($processes as $process)
-                    <a href="{{ route('process', array('id' => $process->id)) }}"><h3>{{ $process->name }}</h3></a>
-                    <h4>{{ $process->description }}</h4>
+                    <a href="{{ route('process', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
+                    <p>{{ $process->description }}</p>
             @endforeach
         @endif
         
@@ -59,7 +59,7 @@
         <h2>Child Concepts</h2>
         
         @if (count($childConcepts) == 0)
-            No child concepts...
+            <p> No child concepts... </p>
         @endif
         
         @if (count($childConcepts))

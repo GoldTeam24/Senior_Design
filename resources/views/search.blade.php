@@ -9,7 +9,7 @@
 </style>
 
 <div class="row">
-    <div class="title text-center"> Search </div>
+    <div class="title text-center"> Search Concepts </div>
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         {!! Form::open(['url' => 'search/name']) !!}
             @if (!count($concepts))
@@ -46,7 +46,11 @@
         @endforeach
     </div>
 @elseif ($isSearched === true)
-    <p>No matching results found.</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="text-center"> No matching results found </h2>
+        </div>
+    </div>
 @endif
 
 @stop
