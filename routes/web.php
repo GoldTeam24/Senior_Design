@@ -22,3 +22,6 @@ Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@inde
 Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index' ]);
 
 Route::resource('search/name', 'SearchController@search');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

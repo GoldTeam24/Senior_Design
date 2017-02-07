@@ -92,25 +92,45 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/"> Home </a></li>
                     <li><a href="/search"> Search </a>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Options <span class="caret"></span></a>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#"> Account Information </a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"> Settings </a></li>
-                        </ul>
+                    <li>
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu pull-right" role="menu">
+
+                                    <li><a href="#"> Account Information </a></li>
+                                    
+                                    <li><a href="#"> Settings </a></li>
+
+                                    <li role="separator" class="divider"></li>
+
+                                    <li>
+                                        <a href="{{ url('/logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        @endif
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
         <div>
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
             <div class="container-fluid">
                 @yield('content')
             </div>
