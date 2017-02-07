@@ -92,14 +92,6 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/"> Home </a></li>
                     <li><a href="/search"> Search </a>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Options <span class="caret"></span></a>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#"> Account Information </a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"> Settings </a></li>
-                        </ul>
-                    </li>
                     <li>
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
@@ -110,7 +102,14 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu pull-right" role="menu">
+
+                                    <li><a href="#"> Account Information </a></li>
+                                    
+                                    <li><a href="#"> Settings </a></li>
+
+                                    <li role="separator" class="divider"></li>
+
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -122,6 +121,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    
                                 </ul>
                             </li>
                         @endif
