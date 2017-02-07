@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-php /var/app/current/artisan migrate
-php /var/app/current/artisan db:seed
-touch /tmp/test.plswork
