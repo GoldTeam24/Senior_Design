@@ -8,13 +8,17 @@
     <title>Prerequisite Knowledge</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:100,600">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/um-theme.css') }}">
+
+    {{-- JavaScript --}}
     <script src="{{ asset('js/vendor/jquery.js') }}"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style type="text/css">
         .panel-heading, .panel-body {
             padding: 5px;
@@ -23,40 +27,12 @@
     </style>
     <style>
         html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: arial, sans-serif;
-            font-weight: 200;
-            /*height: 100vh;*/
+            background-color: #fff
             margin: 0;
-        }
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-            max-width: 50%
         }
 
         .title {
-            font-size: 84px;
+            font-size: 63px;
         }
 
         .links > a {
@@ -69,13 +45,18 @@
             text-transform: uppercase;
         }
 
-        .m-b-md {
-            margin-bottom: 30px;
+        a.navbar-brand {
+            padding: 0 5px;
+        }
+
+        a.navbar-brand img {
+            height: 55px;
+            width: 65px;
         }
     </style>
 </head>
 <body>
-    <nav class="top-bar navbar navbar-default" data-topbar>
+    <nav class="top-bar navbar navbar-default navbar-umich" data-topbar>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -85,6 +66,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="https://umdearborn.edu">
+                    <img alt="Brand" src="https://umdearborn.edu/logo.png">
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -130,12 +114,10 @@
             </div>
         </div>
     </nav>
-        <div>
-            <div class="container-fluid">
-                @yield('content')
-            </div>
-        </div>
-    </body>
+    <div class="container-fluid">
+        @yield('content')
+    </div>    
+</body>
 </html>
 
 @include('footer')

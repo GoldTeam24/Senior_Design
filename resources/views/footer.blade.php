@@ -15,9 +15,9 @@
 			bottom: 0;
 			width: 100%;
 			height: 60px;
-			background-color: #f5f5f5;
+			background-color: #333;
 			border-top: 1px solid #e7e7e7;
-			color: #b76e79;
+			color: #FFC72C;
 		}
 	</style>
 </head>
