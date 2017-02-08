@@ -2,7 +2,7 @@
 @section('content')
 
 <style type="text/css">
-    #concept-col {
+    #process-step-col {
         border-right: 1px solid #eee;
     }
 
@@ -10,7 +10,10 @@
         border-radius: 0px;
     }
 </style>
-<a href="{{ route('concept', array('id' => $process->concept_id)) }}"><h5>Back to concept</h5></a>
+<a href="{{ route('concept', array('id' => $process->concept_id)) }}">
+    <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    Back to concept
+</a>
 <div class="row">
     <div class="col-xs-12">
         <h1 class="page-header"> {{ $process->name }} </h1>
@@ -28,8 +31,8 @@
 
         @if (count($processSteps))
             @foreach ($processSteps as $processStep)
-                    <h3>{{ $processStep->step }}. {{ $processStep->name }}</h3>
-                    <h4>{{ $processStep->description }}</h4>
+                    <h4> {{ $processStep->step }}. {{ $processStep->name }} </h4>
+                    <p> {{ $processStep->description }} </p>
             @endforeach
         @endif
     </div>

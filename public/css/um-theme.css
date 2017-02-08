@@ -1,0 +1,31 @@
+.navbar-umich {
+    background-color: #041E42;
+}
+
+.navbar-umich .navbar-nav > li > a {
+	color: #FFFFFF;
+}
+
+.navbar-umich .navbar-nav > li > a:focus, .navbar-umich .navbar-nav > li > a:hover {
+	color: #FFC72C;
+}
+
+.panel-umich {
+	border-color: #041E42;	
+}
+
+.panel-umich > .panel-heading {
+    color: #333;
+    background-color: #041E42;
+    border-color: #041E42;
+}
+
+.panel-umich > .panel-heading a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.panel-umich > .panel-heading a:focus, .panel-umich > .panel-heading a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}

@@ -5,8 +5,8 @@
     #concept-col {
         border-right: 1px solid #eee;
     }
-
-    div.panel.panel-default {
+    div.panel.panel-default, 
+    div.panel.panel-umich .panel-heading {
         border-radius: 0px;
     }
 </style>
@@ -44,7 +44,7 @@
 
         @if (count($parentConcepts))
             @foreach ($parentConcepts as $concept)
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-umich">
                 <div class="panel-heading text-left"> 
                     <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
                 </div>
@@ -63,7 +63,7 @@
         
         @if (count($childConcepts))
             @foreach ($childConcepts as $concept)
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-umich">
                 <div class="panel-heading text-left"> 
                     <a title="View concept" href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
                 </div>

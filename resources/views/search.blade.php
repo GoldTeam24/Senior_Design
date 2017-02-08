@@ -2,9 +2,11 @@
 @section('content')
 
 <style type="text/css">
-    .concept .panel {
+    .concept .panel,
+    .concept .panel .panel-heading {
         border-radius: 0px;
     }
+
 </style>
 
 <div class="row">
@@ -32,8 +34,8 @@
 @if (count($concepts))
     <div class="row">
         @foreach ($concepts as $concept)
-            <div class="concept col-xs-12">
-                <div class="panel panel-default">
+            <div class="concept col-xs-12 col-sm-offset-2 col-sm-8">
+                <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left"> 
                         <a title="View concept" href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
                     </div>
