@@ -92,7 +92,9 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/"> Home </a></li>
                     <li><a href="/search"> Search </a></li>
+                    @if (Auth::check())
                     <li><a href="/concept/create"> Create Concept </a></li>
+                    @endif
                     <li>
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
