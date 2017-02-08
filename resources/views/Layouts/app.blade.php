@@ -66,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://umdearborn.edu">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img alt="Brand" src="https://umdearborn.edu/logo.png">
                 </a>
             </div>
