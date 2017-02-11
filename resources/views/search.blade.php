@@ -10,7 +10,7 @@
 </style>
 
 <div class="row">
-    <div class="title text-center"> Search Concepts </div>
+    <div class="title text-center"> Prerequisite Knowledge </div>
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         {!! Form::open(['url' => 'search/name']) !!}
             @if (!count($concepts))
