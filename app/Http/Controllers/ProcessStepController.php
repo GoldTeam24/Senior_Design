@@ -3,32 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Process;
+use App\Models\ProcessStep;
 
-class ProcessController extends Controller
+class ProcessStepController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($processId)
+    public function index()
     {
         //
-        $process = Process::find($processId);
-        $processSteps = $process->processSteps()->orderBy('step')->get();
-        $nextStepNumber = sizeof($processSteps) + 1;
-        return view('process', compact('process', 'processSteps', 'nextStepNumber'));
     }
     /**
     * Show the form for creating a new resource.
     *
     * @return \Illuminate\Http\Response
     */
-    public function create($conceptId, $conceptName)
+    public function create($processId, $processName, $step)
     {
         //
-        return view('processCreate', compact('conceptId', 'conceptName'));
+        return view('processStepCreate', compact('processId', 'processName','step'));
     }
     
     /**
@@ -40,15 +36,16 @@ class ProcessController extends Controller
     public function store(Request $request)
     {
         //
-        $process = new Process();
+        $processStep = new ProcessStep();
         
-        $process->name = $request['name'];
-        $process->description = $request['description'];
-        $process->concept_id = $request['concept_id'];
+        $processStep->name = $request['name'];
+        $processStep->description = $request['description'];
+        $processStep->process_id = $request['process_id'];
+        $processStep->step = $request['step'];
 
-        $process->save();
+        $processStep->save();
         
-        return redirect()->route('concept', ['id' => $request['concept_id']]);
+        return redirect()->route('process', ['id' => $request['process_id']]);
     }
     
     /**
@@ -68,28 +65,29 @@ class ProcessController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function edit($id)
+    public function edit($id, $processName)
     {
-        $process = Process::find($id);
-        return view('processEdit', compact('process'));
+        $processStep = ProcessStep::find($id);
+        return view('processStepEdit', compact('processStep', 'processName'));
     }
     
     /**
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
     * @return \Illuminate\Http\Response
     */
     public function update(Request $request)
     {
-        $process = Process::find($request['id']);
-        $process->name = $request['name'];
-        $process->description = $request['description'];
-        $process->concept_id = $request['concept_id'];
+        $processStep = ProcessStep::find($request['id']);
+        $processStep->name = $request['name'];
+        $processStep->description = $request['description'];
+        $processStep->process_id = $request['process_id'];
 
-        $process->save();
+        $processStep->save();
 
-        return redirect()->route('process', ['id' => $request['id']]);
+        return redirect()->route('process', ['id' => $request['process_id']]);
     }
     
     /**
