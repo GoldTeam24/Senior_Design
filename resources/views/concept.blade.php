@@ -13,7 +13,13 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="page-header"> {{ $concept->name }} </h1>
+        <h1 class="page-header"> {{ $concept->name }} 
+        
+         @if (Auth::check())
+                <a class="btn btn-default pull-right" href="{{ route('editConcept', array('id' => $concept->id)) }}">Edit concept</a> 
+        @endif
+
+        </h1>
 
         <h4>{{ $concept->description }}</h4>
 
@@ -37,7 +43,7 @@
         @endif
 
         @if (Auth::check())
-        <a class="btn btn-default" href="{{ route('createProcess', array('conceptId' => $concept->id)) }}">Add a process</a>
+        <a class="btn btn-default" href="{{ route('createProcess', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Add a process</a>
         @endif
         
         <h2>Parent Concepts</h2>

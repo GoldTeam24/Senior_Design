@@ -71,7 +71,8 @@ class ConceptController extends Controller
     */
     public function edit($id)
     {
-        //
+        $concept = Concept::find($id);
+        return view('conceptEdit', compact('concept'));
     }
     
     /**
@@ -81,9 +82,16 @@ class ConceptController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $concept = Concept::find($request['id']);
+        $concept->name = $request['name'];
+        $concept->description = $request['description'];
+        $concept->body = $request['body'];
+
+        $concept->save();
+
+        return redirect()->route('concept', ['id' => $request['id']]);
     }
     
     /**
