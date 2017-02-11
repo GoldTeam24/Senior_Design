@@ -16,7 +16,11 @@
 </a>
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="page-header"> {{ $process->name }} </h1>
+        <h1 class="page-header"> {{ $process->name }} 
+         @if (Auth::check())
+                <a class="btn btn-default pull-right" href="{{ route('editProcess', array('id' => $process->id)) }}">Edit process</a> 
+            @endif
+        </h1>
 
         <h4>{{ $process->description }}</h4>
     </div>
@@ -31,9 +35,17 @@
 
         @if (count($processSteps))
             @foreach ($processSteps as $processStep)
-                    <h4> {{ $processStep->step }}. {{ $processStep->name }} </h4>
+                    <h4> {{ $processStep->step }}. {{ $processStep->name }} 
+                        @if (Auth::check())
+                             <a class="btn btn-default pull-right" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
+                        @endif
+                    </h4>
                     <p> {{ $processStep->description }} </p>
             @endforeach
+        @endif
+
+        @if (Auth::check())
+        <a class="btn btn-default" href="{{ route('createProcessStep', array('processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber)) }}">Add a process step</a> 
         @endif
     </div>
 
