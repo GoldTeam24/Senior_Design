@@ -35,6 +35,10 @@
                     <p>{{ $process->description }}</p>
             @endforeach
         @endif
+
+        @if (Auth::check())
+        <a class="btn btn-default" href="{{ route('createProcess', array('conceptId' => $concept->id)) }}">Add a process</a>
+        @endif
         
         <h2>Parent Concepts</h2>
         
