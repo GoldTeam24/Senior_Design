@@ -50,3 +50,5 @@ Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessControll
 Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('concepts', 'ApiController@index');
