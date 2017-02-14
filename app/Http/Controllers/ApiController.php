@@ -47,7 +47,8 @@ class ApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
+        return response()->json($concepts);
     }
 
     /**
