@@ -49,4 +49,10 @@ Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessControll
 
 Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', function () {
+    // Update the user's profile...
+
+    return redirect('/')->with('status', 'Login Successful!');
+});
+
+Route::resource('concepts', 'ApiController');
