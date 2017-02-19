@@ -1,6 +1,12 @@
 @extends('Layouts.app')
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 <style type="text/css">
     #process-step-col {
         border-right: 1px solid #eee;
@@ -18,7 +24,16 @@
     <div class="col-xs-12">
         <h1 class="page-header"> {{ $process->name }} 
          @if (Auth::check())
-                <a class="btn btn-default pull-right" href="{{ route('editProcess', array('id' => $process->id)) }}">Edit process</a> 
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a class="btn btn-default pull-right" href="{{ route('editProcess', array('id' => $process->id)) }}">Edit process</a> 
+                </li>
+                <li>
+                    {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
+                            {{ Form::submit('Delete Process', ['class' => 'btn btn-default pull-right']) }}
+                    {{ Form::close() }}
+                </li>
+            </ul>
             @endif
         </h1>
 
@@ -38,6 +53,9 @@
                     <h4> {{ $processStep->step }}. {{ $processStep->name }} 
                         @if (Auth::check())
                              <a class="btn btn-default pull-right" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
+                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-default pull-right']) }}
+                            {{ Form::close() }}
                         @endif
                     </h4>
                     <p> {{ $processStep->description }} </p>

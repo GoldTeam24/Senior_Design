@@ -39,6 +39,10 @@ Route::resource('search/name', 'SearchController@search');
 
 Route::resource('concept', 'ConceptController');
 
+Route::resource('process', 'ProcessController');
+
+Route::resource('processStep', 'ProcessStepController');
+
 Auth::routes();
 
 Route::post('concept/create','ConceptController@store');
@@ -54,13 +58,7 @@ Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessControll
 Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
 
 Route::get('/home', function () {
-    // Update the user's profile...
-
     return redirect('/')->with('status', 'Login Successful!');
-});
-
-Route::get('/deleteSuccess', function () {
-    return redirect('/')->with('status', 'Concept Successfully Deleted');
 });
 
 Route::resource('concepts', 'ApiController');

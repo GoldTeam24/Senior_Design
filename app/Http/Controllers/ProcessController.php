@@ -100,6 +100,10 @@ class ProcessController extends Controller
     */
     public function destroy($id)
     {
-        //
+        $process = Process::findOrFail($id);
+        $conceptID = $process->concept_id;
+        $process->delete();
+
+        return redirect()->route('concept.show', $conceptID)->with('status', 'Process Successfully Deleted');
     }
 }

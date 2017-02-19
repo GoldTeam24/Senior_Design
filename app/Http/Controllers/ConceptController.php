@@ -106,6 +106,6 @@ class ConceptController extends Controller
         $concept = Concept::findOrFail($id);
         $concept->delete();
 
-        return redirect('deleteSuccess');
+        return redirect('/')->with('status', 'Concept Successfully Deleted');
     }
 }

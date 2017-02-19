@@ -1,6 +1,12 @@
 @extends('Layouts.app')
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 <style type="text/css">
     #concept-col {
         border-right: 1px solid #eee;
@@ -31,7 +37,7 @@
                 </li>
                 <li>
                     {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-default pull-right', 'id' => 'confirmDelete']) }}
+                        {{ Form::submit('Delete Concept', ['class' => 'btn btn-default pull-right']) }}
                     {{ Form::close() }}
                 </li>
             </ul>

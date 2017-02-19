@@ -98,6 +98,9 @@ class ProcessStepController extends Controller
     */
     public function destroy($id)
     {
-        //
+        $processStep = ProcessStep::findOrFail($id);
+        $processStep->delete();
+
+        return redirect()->back()->with('status', 'Process Step Successfully Deleted');
     }
 }
