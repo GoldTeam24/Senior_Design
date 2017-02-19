@@ -28,21 +28,26 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <h1 id="concept-name" class="page-header"> {{ $concept->name }} 
-        
-         @if (Auth::check())
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a class="btn btn-default pull-right" href="{{ route('editConcept', array('id' => $concept->id)) }}">Edit concept</a> 
-                </li>
-                <li>
-                    {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
-                        {{ Form::submit('Delete Concept', ['class' => 'btn btn-default pull-right']) }}
-                    {{ Form::close() }}
-                </li>
-            </ul>
-        @endif
+        <h1 id="concept-name" class="page-header"> 
+            <div class="row">
+                <div class="col-xs-8">
+                    {{ $concept->name }} 
+                </div>
 
+                <div class="col-xs-4">
+                     @if (Auth::check())
+                        {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
+                            <div class="pull-right" role="group">
+                                <a class="btn btn-default" href="{{ route('editConcept', array('id' => $concept->id)) }}">
+                                    Edit concept
+                                </a> 
+
+                                {{ Form::submit('Delete Concept', ['class' => 'btn btn-default']) }}
+                            </div>
+                        {{ Form::close() }}
+                    @endif
+                </div>
+            </div>
         </h1>
 
         <h4>{{ $concept->description }}</h4>
