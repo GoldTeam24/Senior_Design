@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concept;
+use App\Http\Controllers\Redirect;
 
 class ConceptController extends Controller
 {
@@ -102,6 +103,9 @@ class ConceptController extends Controller
     */
     public function destroy($id)
     {
-        //
+        $concept = Concept::findOrFail($id);
+        $concept->delete();
+
+        return redirect('deleteSuccess');
     }
 }

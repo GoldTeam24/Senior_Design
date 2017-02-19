@@ -19,6 +19,8 @@ Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
 
+Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
+
 Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
 
 Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
@@ -34,6 +36,8 @@ Route::get('processStep/create/{processId}/{processName}/{step}',[ 'as' => 'crea
 Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'uses' => 'ProcessStepController@edit']);
 
 Route::resource('search/name', 'SearchController@search');
+
+Route::resource('concept', 'ConceptController');
 
 Auth::routes();
 
@@ -53,6 +57,10 @@ Route::get('/home', function () {
     // Update the user's profile...
 
     return redirect('/')->with('status', 'Login Successful!');
+});
+
+Route::get('/deleteSuccess', function () {
+    return redirect('/')->with('status', 'Concept Successfully Deleted');
 });
 
 Route::resource('concepts', 'ApiController');

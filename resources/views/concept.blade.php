@@ -25,7 +25,16 @@
         <h1 id="concept-name" class="page-header"> {{ $concept->name }} 
         
          @if (Auth::check())
-                <a class="btn btn-default pull-right" href="{{ route('editConcept', array('id' => $concept->id)) }}">Edit concept</a> 
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a class="btn btn-default pull-right" href="{{ route('editConcept', array('id' => $concept->id)) }}">Edit concept</a> 
+                </li>
+                <li>
+                    {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-default pull-right', 'id' => 'confirmDelete']) }}
+                    {{ Form::close() }}
+                </li>
+            </ul>
         @endif
 
         </h1>
