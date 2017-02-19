@@ -89,13 +89,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu pull-right" role="menu">
-
-                                    <li><a href="#"> Account Information </a></li>
-                                    
-                                    <li><a href="#"> Settings </a></li>
-
-                                    <li role="separator" class="divider"></li>
-
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
