@@ -22,6 +22,11 @@
                         {{ Form::textarea('body', null, ['class' => 'form-control']) }}
                     </div>
 
+                    <div class="form-group">
+                        {{ Form::label('youtube', 'Youtube Link:')}}
+                        {{ Form::text('youtube', null, ['class' => 'form-control']) }}
+                    </div>
+
                     {{ Form::text('id', null, ['class' => 'form-control hidden']) }}
 
                     <div class="form-group">

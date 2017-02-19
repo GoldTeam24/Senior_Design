@@ -19,4 +19,8 @@ class Concept extends Model
     {
         return $this->hasMany('App\Models\Process');
     }
+    public function youtube()
+    {
+        return $this;
+    }
 }

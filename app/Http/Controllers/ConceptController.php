@@ -20,7 +20,9 @@ class ConceptController extends Controller
         $childConcepts = $concept->childConcepts()->orderBy('name')->get();
         $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
         $processes = $concept->processes()->orderBy('name')->get();
-        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
+        $youtube = $concept->youtube()->get();
+
+        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes', 'youtube'));
     }
     /**
     * Show the form for creating a new resource.
@@ -47,6 +49,7 @@ class ConceptController extends Controller
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->youtube = $request['youtube'];
         
         $concept->save();
         
@@ -89,6 +92,7 @@ class ConceptController extends Controller
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->youtube = $request['youtube'];
 
         $concept->save();
 
