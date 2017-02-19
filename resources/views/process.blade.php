@@ -22,22 +22,29 @@
 </a>
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="page-header"> {{ $process->name }} 
-         @if (Auth::check())
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a class="btn btn-default pull-right" href="{{ route('editProcess', array('id' => $process->id)) }}">Edit process</a> 
-                </li>
-                <li>
-                    {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
-                            {{ Form::submit('Delete Process', ['class' => 'btn btn-default pull-right']) }}
-                    {{ Form::close() }}
-                </li>
-            </ul>
-            @endif
+        <h1 class="page-header"> 
+            <div class="row">
+                <div class="col-xs-8">
+                    {{ $process->name }} 
+                </div>
+
+                <div class="col-xs-4">
+                     @if (Auth::check())
+                        {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
+                            <div class="pull-right" role="group">
+                                <a class="btn btn-default" href="{{ route('editProcess', array('id' => $process->id)) }}">
+                                    Edit process
+                                </a> 
+                                
+                                {{ Form::submit('Delete Process', ['class' => 'btn btn-default']) }}
+                            </div>
+                        {{ Form::close() }}
+                    @endif
+                </div>
+            </div>
         </h1>
 
-        <h4>{{ $process->description }}</h4>
+        <h4> {{ $process->description }} </h4>
     </div>
 </div>
 <div class="row">
@@ -52,9 +59,12 @@
             @foreach ($processSteps as $processStep)
                     <h4> {{ $processStep->step }}. {{ $processStep->name }} 
                         @if (Auth::check())
-                             <a class="btn btn-default pull-right" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
-                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
-                                {{ Form::submit('Delete', ['class' => 'btn btn-default pull-right']) }}
+                            {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
+                                <div class="pull-right" role="group">
+                                    <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
+                                    
+                                    {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                            </div>
                             {{ Form::close() }}
                         @endif
                     </h4>
