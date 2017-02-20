@@ -15,9 +15,9 @@ class CreateConceptConceptTable extends Migration
     {
         Schema::create('concept_concept', function (Blueprint $table) {
             $table->integer('parent_concept_id')->unsigned();
-            $table->foreign('parent_concept_id')->references('id')->on('concepts');
+            $table->foreign('parent_concept_id')->references('id')->on('concepts')->onDelete('cascade');
             $table->integer('child_concept_id')->unsigned();
-            $table->foreign('child_concept_id')->references('id')->on('concepts');
+            $table->foreign('child_concept_id')->references('id')->on('concepts')->onDelete('cascade');
             $table->timestamps();
         });
     }

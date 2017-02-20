@@ -19,6 +19,8 @@ Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
 
+Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
+
 Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
 
 Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
@@ -35,6 +37,12 @@ Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'u
 
 Route::resource('search/name', 'SearchController@search');
 
+Route::resource('concept', 'ConceptController');
+
+Route::resource('process', 'ProcessController');
+
+Route::resource('processStep', 'ProcessStepController');
+
 Auth::routes();
 
 Route::post('concept/create','ConceptController@store');
@@ -49,4 +57,8 @@ Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessControll
 
 Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', function () {
+    return redirect('/')->with('status', 'Login Successful!');
+});
+
+Route::resource('concepts', 'ApiController');

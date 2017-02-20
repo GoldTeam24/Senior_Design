@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concept;
+use App\Http\Controllers\Redirect;
 
 class ConceptController extends Controller
 {
@@ -14,11 +15,11 @@ class ConceptController extends Controller
     */
     public function index($conceptId)
     {
-        //
         $concept = Concept::find($conceptId);
         $childConcepts = $concept->childConcepts()->orderBy('name')->get();
         $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
         $processes = $concept->processes()->orderBy('name')->get();
+
         return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
     }
     /**
@@ -28,7 +29,6 @@ class ConceptController extends Controller
     */
     public function create()
     {
-        //
         return view('conceptCreate');
     }
     
@@ -40,12 +40,12 @@ class ConceptController extends Controller
     */
     public function store(Request $request)
     {
-        //
         $concept = new Concept();
         
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->youtube = $request['youtube'];
         
         $concept->save();
         
@@ -88,6 +88,7 @@ class ConceptController extends Controller
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->youtube = $request['youtube'];
 
         $concept->save();
 
@@ -102,6 +103,9 @@ class ConceptController extends Controller
     */
     public function destroy($id)
     {
-        //
+        $concept = Concept::findOrFail($id);
+        $concept->delete();
+
+        return redirect('/')->with('status', 'Concept Successfully Deleted');
     }
 }
