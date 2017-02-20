@@ -113,6 +113,7 @@
         @endif
     </div>
 
+    @if($concept->youtube)
     <div id="media-col" class="col-xs-12 col-sm-6">
         <h2> Media </h2>
 
@@ -169,5 +170,6 @@
             </script>
         @endif
     </div>
+    @endif
 </div>
 @stop

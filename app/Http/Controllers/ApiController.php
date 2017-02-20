@@ -49,7 +49,6 @@ class ApiController extends Controller
     public function show($id)
     {
         if(is_numeric($id)) {
-            //$concepts = Concept::table('concept')
             $concepts = DB::table('concepts')->where('id', $id)->first();
         }
         else $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
