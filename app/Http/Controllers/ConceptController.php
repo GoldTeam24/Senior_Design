@@ -15,14 +15,12 @@ class ConceptController extends Controller
     */
     public function index($conceptId)
     {
-        //
         $concept = Concept::find($conceptId);
         $childConcepts = $concept->childConcepts()->orderBy('name')->get();
         $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
         $processes = $concept->processes()->orderBy('name')->get();
-        $youtube = $concept->youtube()->get();
 
-        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes', 'youtube'));
+        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
     }
     /**
     * Show the form for creating a new resource.
@@ -31,7 +29,6 @@ class ConceptController extends Controller
     */
     public function create()
     {
-        //
         return view('conceptCreate');
     }
     
@@ -43,7 +40,6 @@ class ConceptController extends Controller
     */
     public function store(Request $request)
     {
-        //
         $concept = new Concept();
         
         $concept->name = $request['name'];

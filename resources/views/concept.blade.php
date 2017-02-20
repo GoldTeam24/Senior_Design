@@ -81,13 +81,13 @@
         @endif
 
         @if (count($parentConcepts))
-            @foreach ($parentConcepts as $concept)
+            @foreach ($parentConcepts as $parentConcept)
                 <div class="panel panel-default panel-umich">
                 <div class="panel-heading text-left"> 
-                    <a href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
+                    <a href="{{ route('concept', array('id' => $parentConcept->id)) }}">{{ $parentConcept->name }}</a>
                 </div>
                 <div class="panel-body text-left">
-                    {{ $concept->description }}
+                    {{ $parentConcept->description }}
                 </div>
             </div>
             @endforeach
@@ -115,7 +115,6 @@
 
     <div id="media-col" class="col-xs-12 col-sm-6">
         <h2> Media </h2>
-
 
     @if($concept->youtube != "")
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
