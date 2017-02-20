@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concept;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -47,7 +48,11 @@ class ApiController extends Controller
      */
     public function show($id)
     {
-        $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
+        if(is_numeric($id)) {
+            //$concepts = Concept::table('concept')
+            $concepts = DB::table('concepts')->where('id', $id)->first();
+        }
+        else $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
         return response()->json($concepts);
     }
 
