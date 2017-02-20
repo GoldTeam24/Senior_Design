@@ -8,7 +8,7 @@
 @endif
 
 <style type="text/css">
-    #concept-col {
+    #concept-col.has-media {
         border-right: 1px solid #eee;
     }
     
@@ -56,7 +56,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="concept-col" class="col-xs-12 col-sm-6">
+    <div id="concept-col" class="col-xs-12 col-sm-6 {{ $concept->youtube ? 'has-media' : '' }}">
         <h2>Processes</h2>
     
         @if (count($processes) == 0)

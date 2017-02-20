@@ -8,7 +8,7 @@
 @endif
 
 <style type="text/css">
-    #process-step-col {
+    #process-step-col.has-media {
         border-right: 1px solid #eee;
     }
 
@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="process-step-col" class="col-xs-12 col-sm-8">
+    <div id="process-step-col" class="col-xs-12 col-sm-8 {{ $process->youtube ? 'has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -77,8 +77,10 @@
         @endif
     </div>
 
-    <div id="media-col" class="col-xs-12 col-sm-4">
-        <h4> Media goes here </h4>
-    </div>
+    @if($process->youtube)
+        <div id="media-col" class="col-xs-12 col-sm-4">
+            <h4> Media goes here </h4>
+        </div>
+    @endif
 </div>
 @stop
