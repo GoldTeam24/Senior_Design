@@ -59,7 +59,7 @@
         <h2>Processes</h2>
 
         @if (count($processes) == 0)
-            <p> No process steps... </p>
+            <p> No processes ... </p>
         @endif
 
         @if (count($processes))
