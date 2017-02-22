@@ -21,6 +21,11 @@
                     {{ Form::text('concept_id', null, ['class' => 'form-control hidden']) }}
 
                     <div class="form-group">
+                        {{ Form::label('youtube', 'Youtube Link:')}}
+                        {{ Form::text('youtube', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
                         {{ Form::submit('Update Process', ['class' => 'btn btn-default form-control']) }}
                     </div>
 

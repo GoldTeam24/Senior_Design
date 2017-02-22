@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="process-step-col" class="col-xs-12 col-sm-8 {{ $process->youtube ? 'has-media' : '' }}">
+    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -78,8 +78,16 @@
     </div>
 
     @if($process->youtube)
-        <div id="media-col" class="col-xs-12 col-sm-4">
-            <h4> Media goes here </h4>
+        <div id="media-col" class="col-xs-12 col-sm-6">
+            <h2> Media </h2>
+
+            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <div id="player" class="embed-responsive-item"></div>
+            </div>
+
+            <script> var youtube = {!! json_encode($process->youtube) !!}; </script>
+            <script type="text/javascript" src="{{ URL::asset('js/youtube.js') }}"></script>
         </div>
     @endif
 </div>

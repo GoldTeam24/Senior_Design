@@ -45,6 +45,7 @@ class ProcessController extends Controller
         $process->name = $request['name'];
         $process->description = $request['description'];
         $process->concept_id = $request['concept_id'];
+        $process->youtube = $request['youtube'];
 
         $process->save();
         
@@ -86,6 +87,7 @@ class ProcessController extends Controller
         $process->name = $request['name'];
         $process->description = $request['description'];
         $process->concept_id = $request['concept_id'];
+        $process->youtube = $request['youtube'];
 
         $process->save();
 
