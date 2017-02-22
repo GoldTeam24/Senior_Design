@@ -1,5 +1,9 @@
 @extends('Layouts.app')
 @section('content')
+<a href="{{ route('concept', array('id' => $concept->id)) }}">
+    <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    Back to concept details
+</a>
 <div class="row">
     <div class="col-xs-12">
         <h1 class="page-header">Edit Concept</h1>

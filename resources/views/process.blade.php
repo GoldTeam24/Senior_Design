@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="process-step-col" class="col-xs-12 col-sm-8 {{ $process->youtube ? 'has-media' : '' }}">
+    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -77,10 +77,7 @@
         @endif
     </div>
 
-    @if($process->youtube)
-        <div id="media-col" class="col-xs-12 col-sm-4">
-            <h4> Media goes here </h4>
-        </div>
-    @endif
+    <?php $bladeView = $process ?>
+    @include('partials/youtube')
 </div>
 @stop
