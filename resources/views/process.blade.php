@@ -78,6 +78,6 @@
     </div>
 
     <?php $bladeView = $process ?>
-    @include('fragments/youtube')
+    @include('partials/youtube')
 </div>
 @stop

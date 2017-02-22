@@ -113,6 +113,6 @@
     </div>
 
     <?php $bladeView = $concept ?>
-    @include('fragments/youtube')
+    @include('partials/youtube')
 </div>
 @stop
