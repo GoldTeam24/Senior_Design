@@ -92,7 +92,7 @@ class ConceptController extends Controller
 
         $concept->save();
 
-        return redirect()->route('concept', ['id' => $request['id']]);
+        return redirect()->route('concept.show', ['id' => $request['id']]);
     }
     
     /**
@@ -130,7 +130,7 @@ class ConceptController extends Controller
 
         $concept->save();
 
-        return redirect()->route('concept', ['id' => $request['parentConceptId']])->with('status', 'Child Concept Successfully Linked');
+        return redirect()->route('concept.show', ['id' => $request['parentConceptId']])->with('status', 'Child Concept Successfully Linked');
 
     }
 
@@ -143,6 +143,6 @@ class ConceptController extends Controller
 
         $concept->save();
 
-        return redirect()->route('concept', ['id' => $request['childConceptId']])->with('status', 'Parent Concept Successfully Linked');
+        return redirect()->route('concept.show', ['id' => $request['childConceptId']])->with('status', 'Parent Concept Successfully Linked');
     }
 }
