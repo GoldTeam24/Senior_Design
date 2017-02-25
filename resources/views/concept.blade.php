@@ -110,6 +110,10 @@
                 </div>
             @endforeach
         @endif
+
+        @if (Auth::check())
+            <a class="btn btn-default" href="{{ route('linkChild', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Add a concept</a>
+        @endif
     </div>
 
     <?php $bladeView = $concept ?>

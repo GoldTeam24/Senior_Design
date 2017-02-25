@@ -25,6 +25,8 @@ Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptContro
 
 Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
 
+Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'conceptController@linkChild']);
+
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
 
 Route::get('process/edit/{id}', ['as' => 'editProcess', 'uses' => 'ProcessController@edit']);
@@ -48,6 +50,8 @@ Auth::routes();
 Route::post('concept/create','ConceptController@store');
 
 Route::post('process/create',['as' => 'storeProcess', 'uses' => 'ProcessController@store']);
+
+Route::post('concept/linkChild/create',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
 
 Route::post('processStep/create',['as' => 'storeProcessStep', 'uses' => 'ProcessStepController@store']);
 
