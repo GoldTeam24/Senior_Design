@@ -6,14 +6,11 @@
             <div class="col-xs-12 col-sm-8">
                 {{ Form::open(['route' => 'storeChildLink']) }}
 
-                <div class="form-group">
-                    {{ Form::label('parentConceptId', 'Parent Concept ID:')}}
-                    {{ Form::text('parentConceptId', null, ['class' => 'form-control']) }}
-                </div>
+                {{ Form::text('parentConceptId', $parentConceptId, ['class' => 'form-control hidden']) }}
 
                 <div class="form-group">
                     {{ Form::label('childConceptId', 'Child Concept ID:')}}
-                    {{ Form::text('childConceptId', null, ['class' => 'form-control']) }}
+                    {{ Form::select('childConceptId', $concepts, null, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">

@@ -1,12 +1,6 @@
 @extends('Layouts.app')
 @section('content')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-
 <style type="text/css">
     #process-step-col.has-media {
         border-right: 1px solid #eee;

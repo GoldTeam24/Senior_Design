@@ -1,10 +1,5 @@
 @extends('Layouts.app')
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
 
 <style type="text/css">
     #concept-col.has-media {
@@ -92,6 +87,10 @@
             @endforeach
         @endif
 
+        @if (Auth::check())
+            <a class="btn btn-default" href="{{ route('linkParent', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
+        @endif
+
         <h2>Child Concepts</h2>
 
         @if (count($childConcepts) == 0)
@@ -112,7 +111,7 @@
         @endif
 
         @if (Auth::check())
-            <a class="btn btn-default" href="{{ route('linkChild', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Add a concept</a>
+            <a class="btn btn-default" href="{{ route('linkChild', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>
 
