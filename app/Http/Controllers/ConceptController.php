@@ -108,4 +108,41 @@ class ConceptController extends Controller
 
         return redirect('/')->with('status', 'Concept Successfully Deleted');
     }
+
+    public function linkChild($parentConceptId)
+    {
+        $concepts = Concept::orderBy('name')->pluck('name', 'id');
+        return view('conceptChildCreate', compact('parentConceptId', 'concepts'));
+    }
+
+    public function linkParent($childConceptId)
+    {
+        $concepts = Concept::orderBy('name')->pluck('name', 'id');
+        return view('conceptParentCreate', compact('childConceptId', 'concepts'));
+    }
+
+    public function storeChildLink(Request $request)
+    {
+        //get the parent concept id
+        $concept = Concept::find($request->input('parentConceptId'));
+        //attach the child concept
+        $concept->childConcepts()->attach($request->input('childConceptId'));
+
+        $concept->save();
+
+        return redirect()->route('concept', ['id' => $request['parentConceptId']])->with('status', 'Child Concept Successfully Linked');
+
+    }
+
+    public function storeParentLink(Request $request)
+    {
+        //get the parent concept id
+        $concept = Concept::find($request->input('childConceptId'));
+        //attach the child concept
+        $concept->parentConcepts()->attach($request->input('parentConceptId'));
+
+        $concept->save();
+
+        return redirect()->route('concept', ['id' => $request['childConceptId']])->with('status', 'Parent Concept Successfully Linked');
+    }
 }
