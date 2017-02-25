@@ -49,7 +49,7 @@ class ProcessController extends Controller
 
         $process->save();
         
-        return redirect()->route('concept', ['id' => $request['concept_id']]);
+        return redirect()->route('concept.show', ['id' => $request['concept_id']]);
     }
     
     /**
@@ -58,9 +58,12 @@ class ProcessController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show($processId)
     {
-        //
+        $process = Process::find($processId);
+        $processSteps = $process->processSteps()->orderBy('step')->get();
+        $nextStepNumber = sizeof($processSteps) + 1;
+        return view('process', compact('process', 'processSteps', 'nextStepNumber'));
     }
     
     /**

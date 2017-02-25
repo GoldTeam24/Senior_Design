@@ -10,7 +10,7 @@
         border-radius: 0px;
     }
 </style>
-<a href="{{ route('concept', array('id' => $process->concept_id)) }}">
+<a href="{{ route('concept.show', array('id' => $process->concept_id)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to concept
 </a>

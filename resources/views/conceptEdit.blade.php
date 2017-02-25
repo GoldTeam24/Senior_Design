@@ -1,6 +1,6 @@
 @extends('Layouts.app')
 @section('content')
-<a href="{{ route('concept', array('id' => $concept->id)) }}">
+<a href="{{ route('concept.show', array('id' => $concept->id)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to concept details
 </a>

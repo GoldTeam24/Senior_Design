@@ -1,6 +1,6 @@
 @extends('Layouts.app')
 @section('content')
-<a href="{{ route('process', array('id' => $processStep->process_id)) }}">
+<a href="{{ route('process', array('id' => $processId)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to process details
 </a>
