@@ -23,7 +23,7 @@ Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptControl
 
 //Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
 
-Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
+//Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
 
 Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'conceptController@linkChild']);
 

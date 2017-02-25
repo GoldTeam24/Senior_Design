@@ -13,14 +13,9 @@ class ConceptController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index($conceptId)
+    public function index()
     {
-        $concept = Concept::find($conceptId);
-        $childConcepts = $concept->childConcepts()->orderBy('name')->get();
-        $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
-        $processes = $concept->processes()->orderBy('name')->get();
-
-        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
+        //
     }
     /**
     * Show the form for creating a new resource.

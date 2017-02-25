@@ -78,7 +78,7 @@
             @foreach ($parentConcepts as $parentConcept)
                 <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left">
-                        <a href="{{ route('concept', array('id' => $parentConcept->id)) }}">{{ $parentConcept->name }}</a>
+                        <a href="{{ route('concept.show', array('id' => $parentConcept->id)) }}">{{ $parentConcept->name }}</a>
                     </div>
                     <div class="panel-body text-left">
                         {{ $parentConcept->description }}
@@ -101,7 +101,7 @@
             @foreach ($childConcepts as $childConcept)
                 <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left">
-                        <a title="View concept" href="{{ route('concept', array('id' => $childConcept->id)) }}">{{ $childConcept->name }}</a>
+                        <a title="View concept" href="{{ route('concept.show', array('id' => $childConcept->id)) }}">{{ $childConcept->name }}</a>
                     </div>
                     <div class="panel-body text-left">
                         {{ $childConcept->description }}
