@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
-Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
+//Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
 
 //Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
 
