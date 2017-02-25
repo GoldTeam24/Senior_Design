@@ -111,14 +111,12 @@ class ConceptController extends Controller
 
     public function linkChild($parentConceptId)
     {
-        // $concept = Concept::find($id);
         $concepts = Concept::orderBy('name')->pluck('name', 'id');
         return view('conceptChildCreate', compact('parentConceptId', 'concepts'));
     }
 
     public function linkParent($childConceptId)
     {
-        // $concept = Concept::find($id);
         $concepts = Concept::orderBy('name')->pluck('name', 'id');
         return view('conceptParentCreate', compact('childConceptId', 'concepts'));
     }
