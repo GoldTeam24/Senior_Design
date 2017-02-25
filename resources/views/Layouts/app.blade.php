@@ -76,7 +76,7 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/"> Home </a></li>
                     @if (Auth::check())
-                    <li><a href="/concept/create"> Create Concept </a></li>
+                    <li><a href="{{ route('concept.create') }}"> Create Concept </a></li>
                     @endif
                     <li>
                         @if (Auth::guest())

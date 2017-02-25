@@ -19,9 +19,9 @@ Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
 
-Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
+//Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
 
-Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
+//Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
 
 Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
 
@@ -31,7 +31,7 @@ Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'conceptC
 
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
 
-//Route::get('process/edit/{id}', ['as' => 'editProcess', 'uses' => 'ProcessController@edit']);
+Route::get('process/edit/{id}', ['as' => 'editProcess', 'uses' => 'ProcessController@edit']);
 
 Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index']);
 

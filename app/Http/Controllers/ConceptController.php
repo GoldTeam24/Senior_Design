@@ -58,9 +58,14 @@ class ConceptController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show($conceptId)
     {
-        //
+        $concept = Concept::find($conceptId);
+        $childConcepts = $concept->childConcepts()->orderBy('name')->get();
+        $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
+        $processes = $concept->processes()->orderBy('name')->get();
+
+        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
     }
     
     /**
