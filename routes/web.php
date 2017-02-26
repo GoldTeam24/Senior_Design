@@ -11,10 +11,12 @@
 |
 */
 
+// Root Route
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Search Routes
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 // Concept Routes
@@ -30,11 +32,8 @@ Route::get('processStep/create/{processId}/{processName}/{step}',[ 'as' => 'crea
 // Process Step Routes
 Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'uses' => 'ProcessStepController@edit']);
 
+// Authorization Routing
 Auth::routes();
-
-Route::get('/home', function () {
-    return redirect('/')->with('status', 'Login Successful!');
-});
 
 // Resource Routes
 Route::resource('search/name', 'SearchController@search');
