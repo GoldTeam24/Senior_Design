@@ -26,7 +26,7 @@
                      @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
                             <div class="pull-right" role="group">
-                                <a class="btn btn-default" href="{{ route('editProcess', array('id' => $process->id)) }}">
+                                <a class="btn btn-default" href="{{ route('process.edit', array('id' => $process->id)) }}">
                                     Edit process
                                 </a> 
                                 
