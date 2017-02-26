@@ -9,7 +9,7 @@
         <h1 class="page-header">Edit Concept</h1>
         <div class="col-xs-12 col-sm-8">
 
-                    {{ Form::model($concept, array('route' => 'concept.update', 'method' => 'PATCH')) }}
+                    {{ Form::model($concept, array('method' => 'PUT', 'route' => array('concept.update', $concept->id))) }}
 
                     <div class="form-group">
                         {{ Form::label('name', 'Name:')}}

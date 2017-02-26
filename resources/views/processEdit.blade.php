@@ -9,7 +9,7 @@
         <h1 class="page-header">Edit Process: {{ $process->name }}</h1>
         <div class="col-xs-12 col-sm-8">
 
-                    {{ Form::model($process, array('route' => 'updateProcess', 'method' => 'PUT')) }}
+                    {{ Form::model($process, array('method' => 'PUT', 'route' => array('process.update', $process->id))) }}
 
                     <div class="form-group">
                         {{ Form::label('name', 'Name:')}}

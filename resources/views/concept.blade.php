@@ -32,7 +32,7 @@
                     @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
                         <div class="pull-right" role="group">
-                            <a class="btn btn-default" href="{{ route('concept.edit', array('id' => $concept->id)) }}">
+                            <a class="btn btn-default" href="{{ route('concept.edit', ['id' => $concept->id]) }}">
                                 Edit concept
                             </a>
 
