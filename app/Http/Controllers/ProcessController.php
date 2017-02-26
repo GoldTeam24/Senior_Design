@@ -12,13 +12,9 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($processId)
+    public function index()
     {
         //
-        $process = Process::find($processId);
-        $processSteps = $process->processSteps()->orderBy('step')->get();
-        $nextStepNumber = sizeof($processSteps) + 1;
-        return view('process', compact('process', 'processSteps', 'nextStepNumber'));
     }
     /**
     * Show the form for creating a new resource.
@@ -94,7 +90,7 @@ class ProcessController extends Controller
 
         $process->save();
 
-        return redirect()->route('process', ['id' => $request['id']]);
+        return redirect()->route('process.show', ['id' => $request['id']]);
     }
     
     /**

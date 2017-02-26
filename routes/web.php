@@ -33,7 +33,7 @@ Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess',
 
 //Route::get('process/edit/{id}', ['as' => 'editProcess', 'uses' => 'ProcessController@edit']);
 
-Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index']);
+//Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index']);
 
 Route::get('processStep/create/{processId}/{processName}/{step}',[ 'as' => 'createProcessStep', 'uses' => 'ProcessStepController@create']);
 
