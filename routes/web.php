@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
+Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'conceptController@linkChild']);
+
+Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'conceptController@linkParent']);
+
 //Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
 
 //Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
@@ -24,10 +28,6 @@ Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 //Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
 
 //Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
-
-Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'conceptController@linkChild']);
-
-Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'conceptController@linkParent']);
 
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
 
@@ -49,17 +49,17 @@ Route::resource('processStep', 'ProcessStepController');
 
 Auth::routes();
 
-Route::post('concept/create','ConceptController@store');
+//Route::post('concept/create','ConceptController@store');
 
-Route::post('process/create',['as' => 'storeProcess', 'uses' => 'ProcessController@store']);
+//Route::post('process/create',['as' => 'storeProcess', 'uses' => 'ProcessController@store']);
 
 Route::post('concept/linkChild/create',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
 
 Route::post('concept/linkParent/create',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
 
-Route::post('processStep/create',['as' => 'storeProcessStep', 'uses' => 'ProcessStepController@store']);
+//Route::post('processStep/create',['as' => 'storeProcessStep', 'uses' => 'ProcessStepController@store']);
 
-Route::put('concept/update',['as' => 'updateConcept', 'uses' => 'ConceptController@update']);
+//Route::put('concept/update',['as' => 'updateConcept', 'uses' => 'ConceptController@update']);
 
 Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessController@update']);
 

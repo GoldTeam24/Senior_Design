@@ -67,7 +67,7 @@
         @endif
 
         @if (Auth::check())
-        <a class="btn btn-default" href="{{ route('createProcessStep', array('processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber)) }}">Add a process step</a> 
+        <a class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
         @endif
     </div>
 

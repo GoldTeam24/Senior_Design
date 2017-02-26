@@ -131,14 +131,13 @@ class ConceptController extends Controller
         $concept->save();
 
         return redirect()->route('concept.show', ['id' => $request['parentConceptId']])->with('status', 'Child Concept Successfully Linked');
-
     }
 
     public function storeParentLink(Request $request)
     {
-        //get the parent concept id
+        //get the child concept id
         $concept = Concept::find($request->input('childConceptId'));
-        //attach the child concept
+        //attach the parent concept
         $concept->parentConcepts()->attach($request->input('parentConceptId'));
 
         $concept->save();

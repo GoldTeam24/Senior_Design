@@ -23,7 +23,6 @@ class ProcessStepController extends Controller
     */
     public function create($processId, $processName, $step)
     {
-        //
         return view('processStepCreate', compact('processId', 'processName','step'));
     }
     
