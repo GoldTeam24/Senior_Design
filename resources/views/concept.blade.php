@@ -44,7 +44,7 @@
             </div>
         </h1>
 
-        <h4>{{ $concept->description }}</h4>
+        <h4>{{ $concept->description }}</h4>{
 
         <p>{{ $concept->body }}</p>
     </div>

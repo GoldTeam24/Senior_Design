@@ -63,7 +63,7 @@ Route::post('concept/linkParent/create',['as' => 'storeParentLink', 'uses' => 'C
 
 //Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessController@update']);
 
-Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
+//Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
 
 Route::get('/home', function () {
     return redirect('/')->with('status', 'Login Successful!');

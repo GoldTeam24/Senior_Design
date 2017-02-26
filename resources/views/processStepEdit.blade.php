@@ -9,7 +9,7 @@
         <h1 class="page-header">{{$processName}} : Step {{$processStep->step}}</h1>
         <div class="col-xs-12 col-sm-8">
 
-                    {{ Form::model($processStep, array('route' => 'updateProcessStep', 'method' => 'PUT')) }}
+                    {{ Form::model($processStep, array('method' => 'PUT', 'route' => ['processStep.update', $processStep->id])) }}
 
                     <div class="form-group">
                         {{ Form::label('name', 'Name:')}}
