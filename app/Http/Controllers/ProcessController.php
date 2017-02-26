@@ -12,7 +12,7 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($processId)
+    public function index()
     {
         //
     }
