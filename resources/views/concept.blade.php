@@ -44,7 +44,7 @@
             </div>
         </h1>
 
-        <h4>{{ $concept->description }}</h4>{
+        <h4>{{ $concept->description }}</h4>
 
         <p>{{ $concept->body }}</p>
     </div>
@@ -59,7 +59,7 @@
 
         @if (count($processes))
             @foreach ($processes as $process)
-                <a href="{{ route('process', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
+                <a href="{{ route('process.show', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
                 <p>{{ $process->description }}</p>
             @endforeach
         @endif

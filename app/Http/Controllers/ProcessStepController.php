@@ -44,7 +44,7 @@ class ProcessStepController extends Controller
 
         $processStep->save();
         
-        return redirect()->route('process', ['id' => $request['process_id']]);
+        return redirect()->route('process.show', ['id' => $request['process_id']]);
     }
     
     /**
@@ -86,7 +86,7 @@ class ProcessStepController extends Controller
 
         $processStep->save();
 
-        return redirect()->route('process', ['id' => $request['process_id']]);
+        return redirect()->route('process.show', ['id' => $request['process_id']]);
     }
     
     /**
