@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 // Concept Routes
-Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'conceptController@linkChild']);
-Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'conceptController@linkParent']);
+Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'ConceptController@linkChild']);
+Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'ConceptController@linkParent']);
 Route::post('concept/linkChild/create',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
 Route::post('concept/linkParent/create',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
 
