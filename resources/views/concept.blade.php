@@ -88,7 +88,7 @@
         @endif
 
         @if (Auth::check())
-            <a class="btn btn-default" href="{{ route('linkParent', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
+            <a class="btn btn-default" href="{{ route('createParentLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
         @endif
 
         <h2>Child Concepts</h2>
@@ -111,7 +111,7 @@
         @endif
 
         @if (Auth::check())
-            <a class="btn btn-default" href="{{ route('linkChild', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
+            <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>
 

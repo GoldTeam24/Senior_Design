@@ -55,7 +55,7 @@
                         @if (Auth::check())
                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
                                 <div class="pull-right" role="group">
-                                    <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
+                                    <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a>
                                     
                                     {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
                             </div>

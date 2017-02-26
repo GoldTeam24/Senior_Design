@@ -109,13 +109,13 @@ class ConceptController extends Controller
         return redirect('/')->with('status', 'Concept Successfully Deleted');
     }
 
-    public function linkChild($parentConceptId)
+    public function createChildLink($parentConceptId)
     {
         $concepts = Concept::orderBy('name')->pluck('name', 'id');
         return view('conceptChildCreate', compact('parentConceptId', 'concepts'));
     }
 
-    public function linkParent($childConceptId)
+    public function createParentLink($childConceptId)
     {
         $concepts = Concept::orderBy('name')->pluck('name', 'id');
         return view('conceptParentCreate', compact('childConceptId', 'concepts'));

@@ -20,10 +20,10 @@ Route::get('/', function () {
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 // Concept Routes
-Route::get('concept/linkChild/{id}',[ 'as' => 'linkChild', 'uses' => 'ConceptController@linkChild']);
-Route::get('concept/linkParent/{id}',[ 'as' => 'linkParent', 'uses' => 'ConceptController@linkParent']);
-Route::post('concept/linkChild/create',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
-Route::post('concept/linkParent/create',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
+Route::get('concept/linkChild/create/{id}',[ 'as' => 'createChildLink', 'uses' => 'ConceptController@createChildLink']);
+Route::get('concept/linkParent/create/{id}',[ 'as' => 'createParentLink', 'uses' => 'ConceptController@createParentLink']);
+Route::post('concept/linkChild/store',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
+Route::post('concept/linkParent/store',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
 
 // Process Routes
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
