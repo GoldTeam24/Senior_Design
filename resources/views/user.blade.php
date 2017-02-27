@@ -5,9 +5,14 @@
         <div class="col-xs-12">
             <h1 class="page-header">
                 Account Information
-                <a class="btn btn-default pull-right" href="{{ route('user.edit', array('id' => Auth::user()->id))}}">
-                    Edit Account Information
-                </a>
+                <div class="pull-right" role="group">
+                    <a class="btn btn-default" href="{{ route('user.edit', array('id' => Auth::user()->id))}}">
+                        Edit Account Information
+                    </a>
+                    {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', Auth::user()->id], 'onsubmit' => 'return confirm("Are you sure you want to deactivate this account? All account information will be permanently lost.")']) }}
+                    {{ Form::submit('Deactivate Account', ['class' => 'btn btn-default']) }}
+                    {{ Form::close() }}
+                </div>
             </h1>
 
             <h3><strong>Username</strong></h3>
