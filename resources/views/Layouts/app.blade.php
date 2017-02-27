@@ -95,6 +95,7 @@
                                     <li>
                                         <a href="{{ route('user.edit', array('id' => Auth::user()->id))}}">Edit Account Information</a>
                                     </li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
