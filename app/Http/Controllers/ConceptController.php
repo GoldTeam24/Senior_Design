@@ -148,10 +148,22 @@ class ConceptController extends Controller
     public function destroyParentLink(Request $request)
     {
         $parentConcept = Concept::find($request->input('parentConceptId'));
-        $parentConcept->childConcepts()->detach($request->input('conceptId'));
+        $conceptId = $request->input('conceptId');
+        $parentConcept->childConcepts()->detach($conceptId);
 
         $parentConcept->save();
 
-        return redirect('/')->with('status', 'Concept Successfully Unlinked');
+        return redirect()->route('concept.show', ['id' => $conceptId])->with('status', 'Parent Concept Successfully Unlinked');
+    }
+
+    public function destroyChildLink(Request $request)
+    {
+        $childConcept = Concept::find($request->input('childConceptId'));
+        $conceptId = $request->input('conceptId');
+        $childConcept->parentConcepts()->detach($conceptId);
+
+        $childConcept->save();
+
+        return redirect()->route('concept.show', ['id' => $conceptId])->with('status', 'Child Concept Successfully Unlinked');
     }
 }
