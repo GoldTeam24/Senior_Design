@@ -83,6 +83,16 @@
                     <div class="panel-body text-left">
                         {{ $parentConcept->description }}
                     </div>
+                    @if (Auth::check())
+
+                        {{ Form::open(['route' => 'destroyParentLink']) }}
+                            <div class="pull-right" role="group">
+                                {{ Form::text('parentConceptId', $parentConcept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::text('conceptId', $concept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                            </div>
+                        {{ Form::close() }}
+                    @endif
                 </div>
             @endforeach
         @endif

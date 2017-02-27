@@ -144,4 +144,14 @@ class ConceptController extends Controller
 
         return redirect()->route('concept.show', ['id' => $request['childConceptId']])->with('status', 'Parent Concept Successfully Linked');
     }
+
+    public function destroyParentLink(Request $request)
+    {
+        $parentConcept = Concept::find($request->input('parentConceptId'));
+        $parentConcept->childConcepts()->detach($request->input('conceptId'));
+
+        $parentConcept->save();
+
+        return redirect('/')->with('status', 'Concept Successfully Unlinked');
+    }
 }
