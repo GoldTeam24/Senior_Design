@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(Auth::user()->id);
+        return view('user', compact('userInfo'));
+        //return response()->json($user);
     }
 
     /**
@@ -47,9 +50,6 @@ class UserController extends Controller
     public function show($userId)
     {
         $userInfo = User::find($userId);
-//        $childConcepts = $concept->childConcepts()->orderBy('name')->get();
-//        $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
-//        $processes = $concept->processes()->orderBy('name')->get();
 
         return view('user', compact('userInfo'));
         //return response()->json($user);
@@ -63,7 +63,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userInfo = User::find($id);
+        return view('userEdit', compact('userInfo'));
     }
 
     /**
@@ -75,7 +76,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+
+        $user->save();
+
+        return redirect()->route('user.index');
     }
 
     /**

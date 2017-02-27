@@ -3,10 +3,10 @@
 
     <div class="row">
         <h2>Username</h2>
-        <p>{{ $userInfo->name }}</p>
+        <p>{{ Auth::user()->name }}</p>
 
         <h2>Email</h2>
-        <p>{{ $userInfo->email }}</p>
+        <p>{{ Auth::user()->email }}</p>
     </div>
 
 @stop

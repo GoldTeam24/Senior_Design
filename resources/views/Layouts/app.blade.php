@@ -90,6 +90,12 @@
 
                                 <ul class="dropdown-menu pull-right" role="menu">
                                     <li>
+                                        <a href="{{ route('user.index')}}">Account Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user.edit', array('id' => Auth::user()->id))}}">Edit Account Information</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -100,7 +106,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    
                                 </ul>
                             </li>
                         @endif
