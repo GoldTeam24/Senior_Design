@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,11 +77,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->name = $request['name'];
-        $user->email = $request['email'];
+        try {
+            $user = User::find($id);
+            $user->name = $request['name'];
+            $user->email = $request['email'];
 
-        $user->save();
+            $user->save();
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->with('error', 'That email address has already been taken.');
+        }
 
         return redirect()->route('user.index');
     }
