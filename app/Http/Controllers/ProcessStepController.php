@@ -23,7 +23,6 @@ class ProcessStepController extends Controller
     */
     public function create($processId, $processName, $step)
     {
-        //
         return view('processStepCreate', compact('processId', 'processName','step'));
     }
     
@@ -45,7 +44,7 @@ class ProcessStepController extends Controller
 
         $processStep->save();
         
-        return redirect()->route('process', ['id' => $request['process_id']]);
+        return redirect()->route('process.show', ['id' => $request['process_id']]);
     }
     
     /**
@@ -87,7 +86,7 @@ class ProcessStepController extends Controller
 
         $processStep->save();
 
-        return redirect()->route('process', ['id' => $request['process_id']]);
+        return redirect()->route('process.show', ['id' => $request['process_id']]);
     }
     
     /**

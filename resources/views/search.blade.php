@@ -37,7 +37,7 @@
             <div class="concept col-xs-12 col-sm-offset-2 col-sm-8">
                 <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left"> 
-                        <a title="View concept" href="{{ route('concept', array('id' => $concept->id)) }}">{{ $concept->name }}</a>
+                        <a title="View concept" href="{{ route('concept.show', array('id' => $concept->id)) }}"> {{ $concept->name }} </a>
                     </div>
                     <div class="panel-body text-left">
                         {{ $concept->description }}

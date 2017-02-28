@@ -76,7 +76,7 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/"> Home </a></li>
                     @if (Auth::check())
-                    <li><a href="/concept/create"> Create Concept </a></li>
+                    <li><a href="{{ route('concept.create') }}"> Create Concept </a></li>
                     @endif
                     <li>
                         @if (Auth::guest())
@@ -90,6 +90,13 @@
 
                                 <ul class="dropdown-menu pull-right" role="menu">
                                     <li>
+                                        <a href="{{ route('user.index')}}">Account Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user.edit', array('id' => Auth::user()->id))}}">Edit Account Information</a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -100,7 +107,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    
                                 </ul>
                             </li>
                         @endif
@@ -110,6 +116,11 @@
         </div>
     </nav>
     <div class="container-fluid">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         @yield('content')
     </div>    
 </body>

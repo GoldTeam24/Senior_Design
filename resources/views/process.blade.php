@@ -1,12 +1,6 @@
 @extends('Layouts.app')
 @section('content')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-
 <style type="text/css">
     #process-step-col.has-media {
         border-right: 1px solid #eee;
@@ -16,7 +10,7 @@
         border-radius: 0px;
     }
 </style>
-<a href="{{ route('concept', array('id' => $process->concept_id)) }}">
+<a href="{{ route('concept.show', array('id' => $process->concept_id)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to concept
 </a>
@@ -32,7 +26,7 @@
                      @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
                             <div class="pull-right" role="group">
-                                <a class="btn btn-default" href="{{ route('editProcess', array('id' => $process->id)) }}">
+                                <a class="btn btn-default" href="{{ route('process.edit', array('id' => $process->id)) }}">
                                     Edit process
                                 </a> 
                                 
@@ -61,7 +55,7 @@
                         @if (Auth::check())
                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
                                 <div class="pull-right" role="group">
-                                    <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a> 
+                                    <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a>
                                     
                                     {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
                             </div>
@@ -73,7 +67,7 @@
         @endif
 
         @if (Auth::check())
-        <a class="btn btn-default" href="{{ route('createProcessStep', array('processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber)) }}">Add a process step</a> 
+        <a class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
         @endif
     </div>
 

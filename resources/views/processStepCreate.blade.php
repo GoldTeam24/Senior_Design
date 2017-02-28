@@ -1,6 +1,6 @@
 @extends('Layouts.app')
 @section('content')
-<a href="{{ route('process', array('id' => $processStep->process_id)) }}">
+<a href="{{ route('process.show', array('id' => $processId)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to process details
 </a>
@@ -8,7 +8,7 @@
     <div class="col-xs-12">
         <h1 class="page-header">Create {{ $processName }}: Step {{ $step }}</h1>
         <div class="col-xs-12 col-sm-8">
-                    {{ Form::open(['route' => 'storeProcessStep']) }}
+                    {{ Form::open(['route' => 'processStep.store']) }}
 
                     <div class="form-group">
                         {{ Form::label('name', 'Name:')}}

@@ -1,6 +1,6 @@
 @extends('Layouts.app')
 @section('content')
-<a href="{{ route('concept', array('id' => $conceptId)) }}">
+<a href="{{ route('concept.show', array('id' => $conceptId)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
     Back to concept details
 </a>
@@ -8,7 +8,7 @@
     <div class="col-xs-12">
         <h1 class="page-header">{{ $conceptName }} : Create Process</h1>
         <div class="col-xs-12 col-sm-8">
-                    {{ Form::open(['route' => 'storeProcess']) }}
+                    {{ Form::open(['route' => 'process.store']) }}
 
                     <div class="form-group">
                         {{ Form::label('name', 'Name:')}}

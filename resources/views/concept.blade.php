@@ -1,14 +1,13 @@
 @extends('Layouts.app')
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
 
 <style type="text/css">
     #concept-col.has-media {
         border-right: 1px solid #eee;
+    }
+
+    #concept-col {
+        margin-bottom: 15px;
     }
 
     div.panel.panel-default,
@@ -37,7 +36,7 @@
                     @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
                         <div class="pull-right" role="group">
-                            <a class="btn btn-default" href="{{ route('editConcept', array('id' => $concept->id)) }}">
+                            <a class="btn btn-default" href="{{ route('concept.edit', ['id' => $concept->id]) }}">
                                 Edit concept
                             </a>
 
@@ -64,7 +63,7 @@
 
         @if (count($processes))
             @foreach ($processes as $process)
-                <a href="{{ route('process', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
+                <a href="{{ route('process.show', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
                 <p>{{ $process->description }}</p>
             @endforeach
         @endif
@@ -76,20 +75,33 @@
         <h2>Parent Concepts</h2>
 
         @if (count($parentConcepts) == 0)
-            No parent concepts...
+            <p> No parent concepts... </p>
         @endif
 
         @if (count($parentConcepts))
             @foreach ($parentConcepts as $parentConcept)
                 <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left">
-                        <a href="{{ route('concept', array('id' => $parentConcept->id)) }}">{{ $parentConcept->name }}</a>
+                        <a href="{{ route('concept.show', array('id' => $parentConcept->id)) }}">{{ $parentConcept->name }}</a>
                     </div>
                     <div class="panel-body text-left">
                         {{ $parentConcept->description }}
+                        @if (Auth::check())
+                            {{ Form::open(['route' => 'destroyParentLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this parent concept link?")'])}}
+                            <div class="pull-right" role="group">
+                                {{ Form::text('parentConceptId', $parentConcept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::text('conceptId', $concept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                            </div>
+                            {{ Form::close() }}
+                        @endif
                     </div>
                 </div>
             @endforeach
+        @endif
+
+        @if (Auth::check())
+            <a class="btn btn-default" href="{{ route('createParentLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
         @endif
 
         <h2>Child Concepts</h2>
@@ -102,13 +114,28 @@
             @foreach ($childConcepts as $childConcept)
                 <div class="panel panel-default panel-umich">
                     <div class="panel-heading text-left">
-                        <a title="View concept" href="{{ route('concept', array('id' => $childConcept->id)) }}">{{ $childConcept->name }}</a>
+                        <a title="View concept" href="{{ route('concept.show', array('id' => $childConcept->id)) }}">{{ $childConcept->name }}</a>
                     </div>
                     <div class="panel-body text-left">
                         {{ $childConcept->description }}
                     </div>
+                    <div class="panel-body text-left">
+                        @if (Auth::check())
+                            {{ Form::open(['route' => 'destroyChildLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this child concept link?")']) }}
+                            <div class="pull-right" role="group">
+                                {{ Form::text('childConceptId', $childConcept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::text('conceptId', $concept->id, ['class' => 'form-control hidden']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                            </div>
+                            {{ Form::close() }}
+                        @endif
+                    </div>
                 </div>
             @endforeach
+        @endif
+
+        @if (Auth::check())
+            <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>
 

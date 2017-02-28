@@ -13,14 +13,9 @@ class ConceptController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index($conceptId)
+    public function index()
     {
-        $concept = Concept::find($conceptId);
-        $childConcepts = $concept->childConcepts()->orderBy('name')->get();
-        $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
-        $processes = $concept->processes()->orderBy('name')->get();
-
-        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
+        //
     }
     /**
     * Show the form for creating a new resource.
@@ -58,9 +53,14 @@ class ConceptController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show($conceptId)
     {
-        //
+        $concept = Concept::find($conceptId);
+        $childConcepts = $concept->childConcepts()->orderBy('name')->get();
+        $parentConcepts = $concept->parentConcepts()->orderBy('name')->get();
+        $processes = $concept->processes()->orderBy('name')->get();
+
+        return view('concept', compact('concept', 'childConcepts', 'parentConcepts', 'processes'));
     }
     
     /**
@@ -82,9 +82,9 @@ class ConceptController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
-        $concept = Concept::find($request['id']);
+        $concept = Concept::find($id);
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
@@ -92,7 +92,7 @@ class ConceptController extends Controller
 
         $concept->save();
 
-        return redirect()->route('concept', ['id' => $request['id']]);
+        return redirect()->route('concept.show', ['id' => $request['id']]);
     }
     
     /**
@@ -107,5 +107,63 @@ class ConceptController extends Controller
         $concept->delete();
 
         return redirect('/')->with('status', 'Concept Successfully Deleted');
+    }
+
+    public function createChildLink($parentConceptId)
+    {
+        $concepts = Concept::orderBy('name')->pluck('name', 'id');
+        return view('conceptChildCreate', compact('parentConceptId', 'concepts'));
+    }
+
+    public function createParentLink($childConceptId)
+    {
+        $concepts = Concept::orderBy('name')->pluck('name', 'id');
+        return view('conceptParentCreate', compact('childConceptId', 'concepts'));
+    }
+
+    public function storeChildLink(Request $request)
+    {
+        //get the parent concept id
+        $concept = Concept::find($request->input('parentConceptId'));
+        //attach the child concept
+        $concept->childConcepts()->attach($request->input('childConceptId'));
+
+        $concept->save();
+
+        return redirect()->route('concept.show', ['id' => $request['parentConceptId']])->with('status', 'Child Concept Successfully Linked');
+    }
+
+    public function storeParentLink(Request $request)
+    {
+        //get the child concept id
+        $concept = Concept::find($request->input('childConceptId'));
+        //attach the parent concept
+        $concept->parentConcepts()->attach($request->input('parentConceptId'));
+
+        $concept->save();
+
+        return redirect()->route('concept.show', ['id' => $request['childConceptId']])->with('status', 'Parent Concept Successfully Linked');
+    }
+
+    public function destroyParentLink(Request $request)
+    {
+        $parentConcept = Concept::find($request->input('parentConceptId'));
+        $conceptId = $request->input('conceptId');
+        $parentConcept->childConcepts()->detach($conceptId);
+
+        $parentConcept->save();
+
+        return redirect()->route('concept.show', ['id' => $conceptId])->with('status', 'Parent Concept Successfully Unlinked');
+    }
+
+    public function destroyChildLink(Request $request)
+    {
+        $childConcept = Concept::find($request->input('childConceptId'));
+        $conceptId = $request->input('conceptId');
+        $childConcept->parentConcepts()->detach($conceptId);
+
+        $childConcept->save();
+
+        return redirect()->route('concept.show', ['id' => $conceptId])->with('status', 'Child Concept Successfully Unlinked');
     }
 }

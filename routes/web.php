@@ -11,54 +11,37 @@
 |
 */
 
+// Root Route
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Search Routes
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
-Route::get('concept/create',[ 'as' => 'createConcept', 'uses' => 'ConceptController@create']);
+// Concept Routes
+Route::get('concept/linkChild/create/{id}',[ 'as' => 'createChildLink', 'uses' => 'ConceptController@createChildLink']);
+Route::get('concept/linkParent/create/{id}',[ 'as' => 'createParentLink', 'uses' => 'ConceptController@createParentLink']);
+Route::post('concept/linkChild/store',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
+Route::post('concept/linkParent/store',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
+Route::post('concept/linkChild/destroy',['as' => 'destroyChildLink', 'uses' => 'ConceptController@destroyChildLink']);
+Route::post('concept/linkParent/destroy',['as' => 'destroyParentLink', 'uses' => 'ConceptController@destroyParentLink']);
 
-Route::post('concept/destroy',[ 'as' => 'deleteConcept', 'uses' => 'ConceptController@destroy']);
 
-Route::get('concept/edit/{id}', ['as' => 'editConcept', 'uses' => 'ConceptController@edit']);
-
-Route::get('concept/{id}',[ 'as' => 'concept', 'uses' => 'ConceptController@index' ]);
-
+// Process Routes
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
-
-Route::get('process/edit/{id}', ['as' => 'editProcess', 'uses' => 'ProcessController@edit']);
-
-Route::get('process/{id}',[ 'as' => 'process', 'uses' => 'ProcessController@index']);
-
 Route::get('processStep/create/{processId}/{processName}/{step}',[ 'as' => 'createProcessStep', 'uses' => 'ProcessStepController@create']);
 
+// Process Step Routes
 Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'uses' => 'ProcessStepController@edit']);
 
-Route::resource('search/name', 'SearchController@search');
-
-Route::resource('concept', 'ConceptController');
-
-Route::resource('process', 'ProcessController');
-
-Route::resource('processStep', 'ProcessStepController');
-
+// Authorization Routing
 Auth::routes();
 
-Route::post('concept/create','ConceptController@store');
-
-Route::post('process/create',['as' => 'storeProcess', 'uses' => 'ProcessController@store']);
-
-Route::post('processStep/create',['as' => 'storeProcessStep', 'uses' => 'ProcessStepController@store']);
-
-Route::put('concept/update',['as' => 'updateConcept', 'uses' => 'ConceptController@update']);
-
-Route::put('process/update',['as' => 'updateProcess', 'uses' => 'ProcessController@update']);
-
-Route::put('processStep/update',['as' => 'updateProcessStep', 'uses' => 'ProcessStepController@update']);
-
-Route::get('/home', function () {
-    return redirect('/')->with('status', 'Login Successful!');
-});
-
+// Resource Routes
+Route::resource('search/name', 'SearchController@search');
+Route::resource('concept', 'ConceptController');
+Route::resource('process', 'ProcessController');
+Route::resource('processStep', 'ProcessStepController');
 Route::resource('concepts', 'ApiController');
+Route::resource('user', 'UserController');
