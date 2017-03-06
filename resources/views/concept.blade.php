@@ -63,8 +63,13 @@
 
         @if (count($processes))
             @foreach ($processes as $process)
-                <a href="{{ route('process.show', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
+                @if ($process->onOff == true)
+                <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
                 <p>{{ $process->description }}</p>
+                @else
+                    <h4>Process is OFF</h4>
+                @endif
+
             @endforeach
         @endif
 
