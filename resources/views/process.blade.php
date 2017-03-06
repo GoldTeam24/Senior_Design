@@ -9,6 +9,19 @@
     div.panel.panel-default {
         border-radius: 0px;
     }
+
+    div#process-step-col div.row.process-step-row:nth-child(odd) {
+        background-color: #f5f5f5;
+    }
+
+    div#process-step-col div.row.process-step-row {
+        border-top: 1px solid #ddd;
+        padding: 5px 0;
+    }
+
+    div#process-step-col #add-process-btn {
+        margin: 15px 0;
+    }
 </style>
 <a href="{{ route('concept.show', array('id' => $process->concept_id)) }}">
     <span class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -51,7 +64,13 @@
 
         @if (count($processSteps))
             @foreach ($processSteps as $processStep)
-                    <h4> {{ $processStep->step }}. {{ $processStep->name }} 
+                <div class="row process-step-row">
+                    <div class="col-xs-12 col-sm-9">
+                        <h4> {{ $processStep->step }}. {{ $processStep->name }} 
+                        </h4>
+                        <p> {{ $processStep->description }} </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
                         @if (Auth::check())
                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
                                 <div class="pull-right" role="group">
@@ -61,13 +80,13 @@
                             </div>
                             {{ Form::close() }}
                         @endif
-                    </h4>
-                    <p> {{ $processStep->description }} </p>
+                    </div>
+                </div>
             @endforeach
         @endif
 
         @if (Auth::check())
-        <a class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
+            <a id="add-process-btn" class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
         @endif
     </div>
 

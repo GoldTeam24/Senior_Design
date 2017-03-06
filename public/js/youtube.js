@@ -1,5 +1,7 @@
-
 var videoID = youtube.split('v=')[1];
+if (typeof videoID == 'undefined'){
+    videoID = youtube.split('.be/')[1];
+}
 
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
