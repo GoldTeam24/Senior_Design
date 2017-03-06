@@ -44,3 +44,4 @@ Route::resource('concept', 'ConceptController');
 Route::resource('process', 'ProcessController');
 Route::resource('processStep', 'ProcessStepController');
 Route::resource('concepts', 'ApiController');
+Route::resource('user', 'UserController');

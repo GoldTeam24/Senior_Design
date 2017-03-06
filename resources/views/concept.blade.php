@@ -6,6 +6,10 @@
         border-right: 1px solid #eee;
     }
 
+    #concept-col {
+        margin-bottom: 15px;
+    }
+
     div.panel.panel-default,
     div.panel.panel-umich .panel-heading {
         border-radius: 0px;
@@ -83,7 +87,7 @@
                     <div class="panel-body text-left">
                         {{ $parentConcept->description }}
                         @if (Auth::check())
-                            {{ Form::open(['route' => 'destroyParentLink']) }}
+                            {{ Form::open(['route' => 'destroyParentLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this parent concept link?")'])}}
                             <div class="pull-right" role="group">
                                 {{ Form::text('parentConceptId', $parentConcept->id, ['class' => 'form-control hidden']) }}
                                 {{ Form::text('conceptId', $concept->id, ['class' => 'form-control hidden']) }}
@@ -97,9 +101,7 @@
         @endif
 
         @if (Auth::check())
-            <div class="panel">
-                <a class="btn btn-default" href="{{ route('createParentLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
-            </div>
+            <a class="btn btn-default" href="{{ route('createParentLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
         @endif
 
         <h2>Child Concepts</h2>
@@ -119,7 +121,7 @@
                     </div>
                     <div class="panel-body text-left">
                         @if (Auth::check())
-                            {{ Form::open(['route' => 'destroyChildLink']) }}
+                            {{ Form::open(['route' => 'destroyChildLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this child concept link?")']) }}
                             <div class="pull-right" role="group">
                                 {{ Form::text('childConceptId', $childConcept->id, ['class' => 'form-control hidden']) }}
                                 {{ Form::text('conceptId', $concept->id, ['class' => 'form-control hidden']) }}
@@ -133,9 +135,7 @@
         @endif
 
         @if (Auth::check())
-            <div class="panel">
-                <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
-            </div>
+            <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>
 
