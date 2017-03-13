@@ -66,7 +66,7 @@
             @foreach ($processSteps as $processStep)
                 <div class="row process-step-row">
                     <div class="col-xs-12 col-sm-9">
-                        <h4> {{ $processStep->step }}. {{ $processStep->name }} 
+                        <h4> {{ $processStep->step }}. {{ $processStep->name }} - <span style="color: green">ON</span>
                         </h4>
                         <p> {{ $processStep->description }} </p>
                     </div>

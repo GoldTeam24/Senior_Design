@@ -20,6 +20,7 @@ class CreateProcessesTable extends Migration
             $table->string('description');
             $table->integer('concept_id')->unsigned();
             $table->foreign('concept_id')->references('id')->on('concepts')->onDelete('cascade');
+            $table->boolean('onOff')->default(true);
             $table->timestamps();
         });
     }

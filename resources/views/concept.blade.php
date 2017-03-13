@@ -58,13 +58,22 @@
         <h2>Processes</h2>
 
         @if (count($processes) == 0)
-            <p> No processes ... </p>
+            <p> No processes exist for this concept ... </p>
         @endif
 
         @if (count($processes))
+            <?php $noProcesses = true; ?>
             @foreach ($processes as $process)
-                <a href="{{ route('process.show', array('id' => $process->id)) }}"><h4>{{ $process->name }}</h4></a>
+                @if ($process->onOff == true)
+                <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
                 <p>{{ $process->description }}</p>
+                <?php $noProcesses = false; ?>
+                @else
+                    @if ($noProcesses)
+                    <h4> No active processes ... </h4>
+                    @endif
+                @endif
+
             @endforeach
         @endif
 
