@@ -20,7 +20,6 @@ class CreateProcessStepsTable extends Migration
             $table->integer('step')->unsigned();
             $table->string('name');
             $table->string('description');
-            $table->boolean('onOff')->default(true);
             $table->timestamps();
         });
     }
