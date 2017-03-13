@@ -120,5 +120,48 @@ class DatabaseSeeder extends Seeder
             'process_id' => 1,
             'step' => 3
         ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'justinhoyt24@gmail.com',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'drewseph94@yahoo.com',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'ktcser@umich.edu',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'gregnkaiser@gmail.com',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'jvachere@umich.edu',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'admin',
+            'email' => 'gorancfg@gmail.com',
+            'password' => bcrypt('VeryPassword1!')
+        ]);
+
     }
 }
