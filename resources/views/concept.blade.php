@@ -57,24 +57,20 @@
     <div id="concept-col" class="col-xs-12 col-sm-6 {{ $concept->youtube ? 'has-media' : '' }}">
         <h2>Processes</h2>
 
-        @if (count($processes) == 0)
-            <p> No processes exist for this concept ... </p>
-        @endif
 
-        @if (count($processes))
-            <?php $noProcesses = true; ?>
-            @foreach ($processes as $process)
-                @if ($process->onOff == true)
+        @php ($hasUnhiddenProcesses = false)
+    @foreach ($processes as $process)
+        @if ($process->on_off == true)
                 <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
                 <p>{{ $process->description }}</p>
-                <?php $noProcesses = false; ?>
-                @else
-                    @if ($noProcesses)
-                    <h4> No active processes ... </h4>
-                    @endif
-                @endif
+                @php($hasUnhiddenProcesses = true)
+            @endif
+        @endforeach
 
-            @endforeach
+        @if (count($processes) == 0 and !$hasUnhiddenProcesses)
+            <p> No active processes ... </p>
+        @elseif (count($processes) == 0)
+            <p> No processes exist for this concept ... </p>
         @endif
 
         @if (Auth::check())
