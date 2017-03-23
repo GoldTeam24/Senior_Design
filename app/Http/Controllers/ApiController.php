@@ -100,7 +100,7 @@ class ApiController extends Controller
         if(is_numeric($id)) {
             $processSteps = DB::table('process_steps')->where('id', $id)->first();
         }
-        else $processSteps = Process::where('name', 'LIKE', '%' . $id . '%')->get();
+        else $processSteps = ProcessStep::where('name', 'LIKE', '%' . $id . '%')->get();
         return response()->json($processSteps);
     }
 
