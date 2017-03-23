@@ -38,10 +38,18 @@ Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'u
 // Authorization Routing
 Auth::routes();
 
+// API Routes
+Route::get('api/concepts',[ 'as' => 'indexConcept', 'uses' => 'ApiController@indexConcept']);
+Route::get('api/processes',[ 'as' => 'indexProcess', 'uses' => 'ApiController@indexProcess']);
+Route::get('api/processSteps',[ 'as' => 'indexProcessStep', 'uses' => 'ApiController@indexProcessStep']);
+Route::get('api/concepts/{id}',[ 'as' => 'showConcepts', 'uses' => 'ApiController@showConcepts']);
+Route::get('api/processes/{id}',[ 'as' => 'showProcesses', 'uses' => 'ApiController@showProcesses']);
+Route::get('api/processSteps/{id}',[ 'as' => 'showProcessSteps', 'uses' => 'ApiController@showProcessSteps']);
+
 // Resource Routes
 Route::resource('search/name', 'SearchController@search');
 Route::resource('concept', 'ConceptController');
 Route::resource('process', 'ProcessController');
 Route::resource('processStep', 'ProcessStepController');
-Route::resource('concepts', 'ApiController');
+Route::resource('api', 'ApiController');
 Route::resource('user', 'UserController');
