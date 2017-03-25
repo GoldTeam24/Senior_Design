@@ -28,11 +28,11 @@
     <div class="col-xs-12">
         <h1 id="concept-name" class="page-header">
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-12 col-sm-8">
                     {{ $concept->name }}
                 </div>
 
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                     @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
                         <div class="pull-right" role="group">
@@ -54,7 +54,10 @@
     </div>
 </div>
 <div class="row">
-    <div id="concept-col" class="col-xs-12 col-sm-6 {{ $concept->youtube ? 'has-media' : '' }}">
+    <?php $bladeView = $concept; ?>
+    @include('partials/youtube')
+
+    <div id="concept-col" class="col-xs-12 col-sm-pull-6 col-sm-6 {{ $concept->youtube ? 'has-media' : '' }}">
         <h2>Processes</h2>
 
 
@@ -143,8 +146,5 @@
             <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>
-
-    <?php $bladeView = $concept ?>
-    @include('partials/youtube')
 </div>
 @stop
