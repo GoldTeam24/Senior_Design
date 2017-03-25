@@ -8,7 +8,7 @@
 
                 {{ Form::model($userInfo, array('method' => 'PUT', 'route' => array('user.update', $userInfo->id))) }}
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                     {{ Form::label('name', 'Username:')}}
                     {{ Form::text('name', null, ['class' => 'form-control']) }}
                     @if ($errors->has('name'))
@@ -18,7 +18,7 @@
                     @endif
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                     {{ Form::label('email', 'Email:')}}
                     {{ Form::text('email', null, ['class' => 'form-control']) }}
                     @if ($errors->has('email'))
