@@ -51,7 +51,7 @@
             </div>
         </h1>
 
-        <h4> {{ $process->description }} </h4>
+        {!! $process->description !!}
     </div>
 </div>
 <div class="row">
@@ -68,7 +68,7 @@
                     <div class="col-xs-12 col-sm-9">
                         <h4> {{ $processStep->step }}. {{ $processStep->name }} - <span style="color: green">ON</span>
                         </h4>
-                        <p> {{ $processStep->description }} </p>
+                        {!! $processStep->description !!}
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         @if (Auth::check())

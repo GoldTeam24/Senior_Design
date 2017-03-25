@@ -50,7 +50,7 @@
 
         <h4>{{ $concept->description }}</h4>
 
-        <p>{{ $concept->body }}</p>
+        {!! $concept->body !!}
     </div>
 </div>
 <div class="row">
@@ -62,7 +62,7 @@
     @foreach ($processes as $process)
         @if ($process->on_off == true)
                 <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
-                <p>{{ $process->description }}</p>
+                {!! $process->description !!}
                 @php($hasUnhiddenProcesses = true)
             @endif
         @endforeach

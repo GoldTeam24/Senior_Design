@@ -20,6 +20,9 @@
                         {{ Form::label('description', 'Description:')}}
                         {{ Form::textarea('description', null, ['class' => 'form-control']) }}
                     </div>
+                    <script type="text/javascript">
+                        CKEDITOR.replace( 'description' );
+                    </script>
 
                     {{ Form::text('id', null, ['class' => 'form-control hidden']) }}
                     {{ Form::text('concept_id', null, ['class' => 'form-control hidden']) }}
