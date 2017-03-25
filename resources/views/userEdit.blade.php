@@ -11,20 +11,23 @@
                 <div class="form-group">
                     {{ Form::label('name', 'Username:')}}
                     {{ Form::text('name', null, ['class' => 'form-control']) }}
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
                 </div>
 
-                @if(!session('error'))
                 <div class="form-group">
                     {{ Form::label('email', 'Email:')}}
                     {{ Form::text('email', null, ['class' => 'form-control']) }}
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                 </div>
-                @else
-                <div class="form-group has-error">
-                    {{ Form::label('email', 'Email:', ['class' => 'control-label'])}}
-                    {{ Form::text('email', null, ['class' => 'form-control']) }}
-                    <span class="help-block"><strong>{{ session('error') }}</strong></span>
-                </div>
-                @endif
+                
 
                 {{ Form::text('id', null, ['class' => 'form-control hidden']) }}
 
