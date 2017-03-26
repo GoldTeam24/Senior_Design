@@ -58,7 +58,7 @@
     <?php $bladeView = $process; ?>
     @include('partials/youtube')
 
-    <div id="process-step-col" class="col-sm-push-6 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
+    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'col-sm-pull-6 has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
