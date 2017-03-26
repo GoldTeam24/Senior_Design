@@ -31,11 +31,11 @@
     <div class="col-xs-12">
         <h1 class="page-header"> 
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-12 col-sm-8">
                     {{ $process->name }} 
                 </div>
 
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                      @if (Auth::check())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
                             <div class="pull-right" role="group">
@@ -51,11 +51,14 @@
             </div>
         </h1>
 
-        <h4> {{ $process->description }} </h4>
+        {!! $process->description !!}
     </div>
 </div>
 <div class="row">
-    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
+    <?php $bladeView = $process; ?>
+    @include('partials/youtube')
+
+    <div id="process-step-col" class="col-sm-push-6 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -68,7 +71,7 @@
                     <div class="col-xs-12 col-sm-9">
                         <h4> {{ $processStep->step }}. {{ $processStep->name }} - <span style="color: green">ON</span>
                         </h4>
-                        <p> {{ $processStep->description }} </p>
+                        {!! $processStep->description !!}
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         @if (Auth::check())
@@ -90,7 +93,5 @@
         @endif
     </div>
 
-    <?php $bladeView = $process ?>
-    @include('partials/youtube')
 </div>
 @stop

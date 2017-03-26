@@ -17,6 +17,8 @@
 
     {{-- JavaScript --}}
     <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+    <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style type="text/css">
@@ -81,6 +83,7 @@
                     <li>
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li><a href="{{ url('/register') }}">Register User</a></li>
                         <li class="dropdown">
