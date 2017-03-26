@@ -26,6 +26,12 @@
                                                         'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}
         {!! Form::close() !!}
     </div>
+    <select>
+        <option selected disabled hidden>Status</option>
+        @foreach($concepts as $concept)
+                <option value="primary">{{ $concept->name }}</option>
+        @endforeach
+    </select>
 </div>
 
 @stop

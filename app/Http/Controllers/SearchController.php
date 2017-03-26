@@ -30,7 +30,6 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-        //
         $searchString = Request::input('searchString');
 
         $concepts = Concept::where('name', 'LIKE', '%' . $searchString . '%')->get();

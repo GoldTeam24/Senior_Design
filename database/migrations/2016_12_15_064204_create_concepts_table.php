@@ -18,6 +18,7 @@ class CreateConceptsTable extends Migration
             $table->text('body');
             $table->string('name');
             $table->string('description');
+            $table->string('status');
             $table->timestamps();
         });
     }

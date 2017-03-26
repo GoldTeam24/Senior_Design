@@ -12,9 +12,10 @@
 */
 
 // Root Route
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', [ 'as' => 'indexWelcome', 'uses' => 'WelcomeController@index']);
 
 // Search Routes
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
@@ -47,6 +48,7 @@ Route::get('api/processes/{id}',[ 'as' => 'showProcesses', 'uses' => 'ApiControl
 Route::get('api/processSteps/{id}',[ 'as' => 'showProcessSteps', 'uses' => 'ApiController@showProcessSteps']);
 
 // Resource Routes
+Route::resource('/', 'WelcomeController@index');
 Route::resource('search/name', 'SearchController@search');
 Route::resource('concept', 'ConceptController');
 Route::resource('process', 'ProcessController');
