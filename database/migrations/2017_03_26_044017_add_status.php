@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConceptsTable extends Migration
+class AddStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateConceptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('concepts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('body');
-            $table->string('name');
-            $table->string('description');
-            $table->timestamps();
+        Schema::table('concepts', function (Blueprint $table) {
+            $table->string('status')->default("primary");
         });
     }
 
@@ -29,6 +25,8 @@ class CreateConceptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('concepts');
+        Schema::table('concepts', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 }
