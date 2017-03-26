@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
-                    @if (Auth::check())
+                    @if (Auth::check() && Auth::user()->isAdmin())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['concept.destroy', $concept->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this concept?")']) }}
                         <div class="pull-right" role="group">
                             <a class="btn btn-default" href="{{ route('concept.edit', ['id' => $concept->id]) }}">
@@ -62,8 +62,8 @@
 
 
         @php ($hasUnhiddenProcesses = false)
-    @foreach ($processes as $process)
-        @if ($process->on_off == true)
+        @foreach ($processes as $process)
+            @if ($process->on_off == true)
                 <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
                 {!! $process->description !!}
                 @php($hasUnhiddenProcesses = true)
@@ -76,7 +76,7 @@
             <p> No processes exist for this concept ... </p>
         @endif
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a class="btn btn-default" href="{{ route('createProcess', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Add a process</a>
         @endif
 
@@ -94,7 +94,7 @@
                     </div>
                     <div class="panel-body text-left">
                         {{ $parentConcept->description }}
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user()->isAdmin())
                             {{ Form::open(['route' => 'destroyParentLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this parent concept link?")'])}}
                             <div class="pull-right" role="group">
                                 {{ Form::text('parentConceptId', $parentConcept->id, ['class' => 'form-control hidden']) }}
@@ -108,7 +108,7 @@
             @endforeach
         @endif
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a class="btn btn-default" href="{{ route('createParentLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Parent</a>
         @endif
 
@@ -128,7 +128,7 @@
                         {{ $childConcept->description }}
                     </div>
                     <div class="panel-body text-left">
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user()->isAdmin())
                             {{ Form::open(['route' => 'destroyChildLink', 'onsubmit' => 'return confirm("Are you sure you want to delete this child concept link?")']) }}
                             <div class="pull-right" role="group">
                                 {{ Form::text('childConceptId', $childConcept->id, ['class' => 'form-control hidden']) }}
@@ -142,7 +142,7 @@
             @endforeach
         @endif
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a class="btn btn-default" href="{{ route('createChildLink', array('conceptId' => $concept->id, 'conceptName' => $concept->name)) }}">Link a Child</a>
         @endif
     </div>

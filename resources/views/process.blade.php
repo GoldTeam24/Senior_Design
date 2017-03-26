@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
-                     @if (Auth::check())
+                     @if (Auth::check() && Auth::user()->isAdmin())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
                             <div class="pull-right" role="group">
                                 <a class="btn btn-default" href="{{ route('process.edit', array('id' => $process->id)) }}">
@@ -74,7 +74,7 @@
                         {!! $processStep->description !!}
                     </div>
                     <div class="col-xs-12 col-sm-3">
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user()->isAdmin())
                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
                                 <div class="pull-right" role="group">
                                     <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a>
@@ -88,7 +88,7 @@
             @endforeach
         @endif
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a id="add-process-btn" class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
         @endif
     </div>

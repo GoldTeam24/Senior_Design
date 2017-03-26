@@ -126,42 +126,48 @@ class DatabaseSeeder extends Seeder
             'id'=> 1,
             'name' => 'admin',
             'email' => 'justinhoyt24@gmail.com',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
         DB::table('users')->insert([
             'id'=> 2,
             'name' => 'admin',
             'email' => 'drewseph94@yahoo.com',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
         DB::table('users')->insert([
             'id'=> 3,
             'name' => 'admin',
             'email' => 'ktcser@umich.edu',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
         DB::table('users')->insert([
             'id'=> 4,
             'name' => 'admin',
             'email' => 'gregnkaiser@gmail.com',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
         DB::table('users')->insert([
             'id'=> 5,
             'name' => 'admin',
             'email' => 'jvachere@umich.edu',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
         DB::table('users')->insert([
             'id'=> 6,
             'name' => 'admin',
             'email' => 'gorancfg@gmail.com',
-            'password' => bcrypt('VeryPassword1!')
+            'password' => bcrypt('VeryPassword1!'),
+            'is_admin' => true
         ]);
 
     }
