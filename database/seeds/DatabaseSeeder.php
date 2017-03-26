@@ -83,7 +83,8 @@ class DatabaseSeeder extends Seeder
             $concept = Concept::create([
                 'name' => $concepts[$i],
                 'body' =>  $concepts[$i+1],
-                'description' => $concepts[$i+2]
+                'description' => $concepts[$i+2],
+                'status' => "primary"
             ]);
         }
         for ($i = 0; $i < sizeof($relations); $i += 2)
