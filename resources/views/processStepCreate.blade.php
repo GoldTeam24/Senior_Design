@@ -19,6 +19,9 @@
                         {{ Form::label('description', 'Description:')}}
                         {{ Form::textarea('description', null, ['class' => 'form-control']) }}
                     </div>
+                    <script type="text/javascript">
+                        CKEDITOR.replace( 'description' );
+                    </script>
 
                     {{ Form::text('step', $step, ['class' => 'form-control hidden']) }}
                     {{ Form::text('process_id', $processId, ['class' => 'form-control hidden']) }}

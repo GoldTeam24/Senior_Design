@@ -9,6 +9,8 @@
         "laravel/framework": "5.3.*",
         "illuminate/html": "^5.0",
         "laravelcollective/html": "^5.2.0",
+        "doctrine/dbal": "^2.5",
+        "ckeditor/ckeditor": "^4.6",
         "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {

@@ -14,15 +14,16 @@
 use Illuminate\Support\Facades\Storage;
 
 // Root Route
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', [ 'as' => 'indexWelcome', 'uses' => 'WelcomeController@index']);
 
 // Search Routes
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
 
 // Concept Routes
-Route::get('concept/linkChild/create/{id}',[ 'as' => 'createChildLink', 'uses' => 'ConceptController@createChildLink']);
+Route::get('concept/linkChild/create/{id}',[ 'as' => 'createChildLink', 'uses' => 'ConceptController@createChildLink'])->middleware('admin');
 Route::get('concept/linkParent/create/{id}',[ 'as' => 'createParentLink', 'uses' => 'ConceptController@createParentLink']);
 Route::post('concept/linkChild/store',['as' => 'storeChildLink', 'uses' => 'ConceptController@storeChildLink']);
 Route::post('concept/linkParent/store',['as' => 'storeParentLink', 'uses' => 'ConceptController@storeParentLink']);
@@ -52,6 +53,7 @@ Route::get('api/processes/{id}',[ 'as' => 'showProcesses', 'uses' => 'ApiControl
 Route::get('api/processSteps/{id}',[ 'as' => 'showProcessSteps', 'uses' => 'ApiController@showProcessSteps']);
 
 // Resource Routes
+Route::resource('/', 'WelcomeController@index');
 Route::resource('search/name', 'SearchController@search');
 Route::resource('concept', 'ConceptController');
 Route::resource('process', 'ProcessController');
