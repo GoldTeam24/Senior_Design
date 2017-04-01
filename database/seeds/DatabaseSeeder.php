@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id'=> 3,
             'name' => 'admin',
-            'email' => 'ktcser@umich.edu',
+            'email' => 'cktcser@umich.edu',
             'password' => bcrypt('VeryPassword1!')
         ]);
 

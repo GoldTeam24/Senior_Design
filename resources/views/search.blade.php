@@ -22,7 +22,8 @@
             @if (count($concepts))
             {!! Form::text('searchString', $searchString,
                                    ['required',
-                                    'class'=>'form-control']) !!}
+                                    'class'=>'form-control',
+                                    'placeholder'=>'Enter search concept...']) !!}
             @endif
 
             {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',

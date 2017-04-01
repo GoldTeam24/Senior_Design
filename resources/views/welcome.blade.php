@@ -20,7 +20,8 @@
 
         	{!! Form::text('searchString', null,
                                    ['required',
-                                    'class'=>'form-control']) !!}
+                                    'class'=>'form-control',
+                                    'placeholder'=>'Enter search concept...']) !!}
 
             {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',
                                                         'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}

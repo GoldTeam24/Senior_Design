@@ -81,6 +81,40 @@
                             {{ Form::close() }}
                         @endif
                     </div>
+                    <br>
+                    <div class="col-xs-12 col-sm-9">
+                        @if (count($processStep->files))
+                        <table class="table table-hover">
+                                <tbody>
+                            @foreach($processStep->files as $file)
+                            
+                                <tr>
+                                    <td>{{ $file->file_name }}</td>
+                                    <td style="width: 88px"> {{ Form::open(['route' => 'downloadProcessStepFile']) }}
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            {{ Form::submit('Download', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                {{ Form::close() }}
+                                @if (Auth::check())
+                                    {{ Form::open(['route' => 'deleteProcessStepFile']) }}
+                                    <td style="width: 68px">
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            <input type="hidden" name="processId" value="{{ $process->id }}">
+                                            {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                    {{ Form::close() }}
+                                @endif
+                                </tr>
+                               
+                            @endforeach
+                             </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         @endif
