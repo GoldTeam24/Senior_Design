@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Storage;
+
 // Root Route
 //Route::get('/', function () {
 //    return view('welcome');
@@ -32,9 +34,12 @@ Route::post('concept/linkParent/destroy',['as' => 'destroyParentLink', 'uses' =>
 // Process Routes
 Route::get('process/create/{conceptId}/{conceptName}',[ 'as' => 'createProcess', 'uses' => 'ProcessController@create']);
 Route::get('processStep/create/{processId}/{processName}/{step}',[ 'as' => 'createProcessStep', 'uses' => 'ProcessStepController@create']);
+Route::post('processStep/download', ['as' => 'downloadProcessStepFile', 'uses' => 'ProcessController@downloadFile']);
+Route::post('processStep/fileDelete', ['as' => 'deleteProcessStepFile', 'uses' => 'ProcessController@deleteFile']);
 
 // Process Step Routes
 Route::get('processStep/edit/{id}/{processName}', ['as' => 'editProcessStep', 'uses' => 'ProcessStepController@edit']);
+Route::post('processStep/edit/upload', ['as'=>'uploadProcessStepFile', 'uses' => 'ProcessStepController@uploadFile']);
 
 // Authorization Routing
 Auth::routes();
@@ -55,3 +60,14 @@ Route::resource('process', 'ProcessController');
 Route::resource('processStep', 'ProcessStepController');
 Route::resource('api', 'ApiController');
 Route::resource('user', 'UserController');
+
+// File Upload Routes
+Route::get('test', function () {
+    echo 123;
+    $s3 = Storage::disk('s3');
+    $s3->put('myfile.txt','Test file','public');
+});
+
+Route::post('upload-file', function() {
+    return response($request->all(), 201);
+});

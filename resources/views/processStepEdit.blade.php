@@ -32,7 +32,14 @@
                     </div>
 
                     {{ Form::close() }}
+                    {{ Form::label('addFile', 'Upload Files (6mb Limit):')}}
+                    <form action="{{ url('processStep/edit/upload') }}"class="dropzone" id="addFile">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $processStep->id }}">
+                    </form> 
+                    <br>
         </div>
     </div>
+    
 </div>
 @stop
