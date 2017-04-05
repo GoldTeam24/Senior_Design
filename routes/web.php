@@ -19,6 +19,7 @@ Route::get('/', [ 'as' => 'indexWelcome', 'uses' => 'WelcomeController@index']);
 
 // Search Routes
 Route::get('search',[ 'as' => 'search', 'uses' =>  'SearchController@index' ]);
+Route::post('search/concept',['as' => 'searchConcept', 'uses' => 'SearchController@openConcept']);
 
 // Concept Routes
 Route::get('concept/linkChild/create/{id}',[ 'as' => 'createChildLink', 'uses' => 'ConceptController@createChildLink'])->middleware('admin');

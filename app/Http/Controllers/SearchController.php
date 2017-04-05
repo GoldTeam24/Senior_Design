@@ -38,4 +38,10 @@ class SearchController extends Controller
 
         return view('search', compact('concepts', 'searchString', 'isSearched'));
     }
+
+    public function openConcept(Request $request) {
+        $concept = Concept::find($request::input('conceptId'));
+
+        return redirect()->route('concept.show', array('id' => $concept->id));
+    }
 }

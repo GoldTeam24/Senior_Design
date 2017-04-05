@@ -15,7 +15,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $concepts = DB::table('concepts')->where('status', '=', 'primary')->get();
+        //$concepts = DB::table('concepts')->where('status', '=', 'primary')->get();
+        //$concepts = Concept::orderBy('name')->pluck('name', 'id');
+        $concepts = Concept::where('status', '=', 'primary')->orderBy('name')->pluck('name', 'id');
+
+        //$conceptList = DB::table('concepts')->lists('name', 'id');
 
         return view('welcome', compact('concepts'));
     }
