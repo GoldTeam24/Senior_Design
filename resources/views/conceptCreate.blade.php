@@ -25,6 +25,18 @@
                     </script> 
 
                     <div class="form-group">
+                        {{ Form::label('stem', 'STEM Field:')}}
+                        {{ Form::select('stem',
+                            ['none' => 'None',
+                            'science' => 'Science',
+                            'technology' => 'Technology',
+                            'engineering' => 'Engineering',
+                            'mathematics' => 'Mathematics',
+                            'primary' => 'Primary'], null,
+                        ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
                         {{ Form::label('youtube', 'Youtube Link:')}}
                         {{ Form::text('youtube', null, ['class' => 'form-control']) }}
                     </div>
