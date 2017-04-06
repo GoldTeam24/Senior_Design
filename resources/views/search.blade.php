@@ -25,6 +25,16 @@
                                     'class'=>'form-control']) !!}
             @endif
 
+            {{ Form::label('selectFilter', 'Filters') }}
+
+            &emsp;&emsp;
+
+            @foreach ( $filterOptions as $filter => $name )
+                {{ Form::checkbox( 'filters[]',
+                                  $filter) }}
+                {{ Form::label($filter,  $name) }}
+            @endforeach
+
             {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',
                                                         'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}
         {!! Form::close() !!}

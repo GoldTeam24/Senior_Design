@@ -15,13 +15,14 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        //$concepts = DB::table('concepts')->where('status', '=', 'primary')->get();
-        //$concepts = Concept::orderBy('name')->pluck('name', 'id');
         $concepts = Concept::where('status', '=', 'primary')->orderBy('name')->pluck('name', 'id');
+        $filterOptions = array( 'science' => 'Science',
+            'technology' => "Technology",
+            'engineering' => 'Engineering',
+            'mathematics' => 'Mathematics',
+            'primary' => 'Primary');
 
-        //$conceptList = DB::table('concepts')->lists('name', 'id');
-
-        return view('welcome', compact('concepts'));
+        return view('welcome', compact('concepts', 'filterOptions'));
     }
 
     /**

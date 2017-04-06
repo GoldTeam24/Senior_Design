@@ -22,28 +22,26 @@
                                    ['required',
                                     'class'=>'form-control']) !!}
 
+        <br>
+
+        <div class="form-group">
+            {{ Form::label('selectFilter', 'Filters') }}
+
+            &emsp;&emsp;
+
+            @foreach ( $filterOptions as $filter => $name )
+                {{ Form::checkbox( 'filters[]',
+                                  $filter) }}
+                {{ Form::label($filter,  $name) }}
+            @endforeach
+
+        </div>
+
             {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',
                                                         'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}
         {!! Form::close() !!}
+
     </div>
-
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        {{ Form::open(['route' => 'searchConcept']) }}
-
-        {{--{{ Form::text('concepts', $concepts, ['class' => 'form-control hidden']) }}--}}
-
-        <div class="form-group">
-            {{ Form::label('primaryConcepts', 'Primary Concepts:')}}
-            {{ Form::select('conceptId', $concepts, null, ['class' => 'form-control']) }}
-        </div>
-
-        <div class="form-group">
-            {{ Form::submit('View concept', ['class' => 'btn btn-default form-control']) }}
-        </div>
-
-        {{ Form::close() }}
-    </div>
-
 </div>
 
 @stop
