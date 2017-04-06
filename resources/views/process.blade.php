@@ -58,7 +58,7 @@
     <?php $bladeView = $process; ?>
     @include('partials/youtube')
 
-    <div id="process-step-col" class="col-sm-push-6 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
+    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'col-sm-pull-6 has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -82,6 +82,40 @@
                                     {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
                             </div>
                             {{ Form::close() }}
+                        @endif
+                    </div>
+                    <br>
+                    <div class="col-xs-12 col-sm-9">
+                        @if (count($processStep->files))
+                        <table class="table table-hover">
+                                <tbody>
+                            @foreach($processStep->files as $file)
+                            
+                                <tr>
+                                    <td>{{ $file->file_name }}</td>
+                                    <td style="width: 88px"> {{ Form::open(['route' => 'downloadProcessStepFile']) }}
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            {{ Form::submit('Download', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                {{ Form::close() }}
+                                @if (Auth::check()&& Auth::user()->isAdmin())
+                                    {{ Form::open(['route' => 'deleteProcessStepFile']) }}
+                                    <td style="width: 68px">
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            <input type="hidden" name="processId" value="{{ $process->id }}">
+                                            {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                    {{ Form::close() }}
+                                @endif
+                                </tr>
+                               
+                            @endforeach
+                             </tbody>
+                            </table>
                         @endif
                     </div>
                 </div>

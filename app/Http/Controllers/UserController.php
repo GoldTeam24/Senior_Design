@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Validator;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,16 +78,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $user = User::find($id);
-            $user->name = $request['name'];
-            $user->email = $request['email'];
+        $this->validator($request->all())->validate();
 
-            $user->save();
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->with('error', 'That email address has already been taken.');
-        }
+        $user = User::find($id);
 
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        
+        $user->save();
+        
         return redirect()->route('user.index');
     }
 
@@ -102,5 +102,19 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('/')->with('status', 'Account Successfully Deleted');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+        ]);
     }
 }

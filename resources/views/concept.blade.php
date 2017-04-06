@@ -57,7 +57,7 @@
     <?php $bladeView = $concept; ?>
     @include('partials/youtube')
 
-    <div id="concept-col" class="col-xs-12 col-sm-pull-6 col-sm-6 {{ $concept->youtube ? 'has-media' : '' }}">
+    <div id="concept-col" class="col-xs-12 col-sm-6 {{ $concept->youtube ? 'col-sm-pull-6 has-media' : '' }}">
         <h2>Processes</h2>
 
 

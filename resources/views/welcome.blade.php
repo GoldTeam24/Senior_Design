@@ -20,7 +20,8 @@
 
         	{!! Form::text('searchString', null,
                                    ['required',
-                                    'class'=>'form-control']) !!}
+                                    'class'=>'form-control',
+                                    'placeholder'=>'Enter search concept...']) !!}
 
         <br>
 
