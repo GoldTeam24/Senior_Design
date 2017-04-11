@@ -11,12 +11,17 @@
 
 <div class="row">
     <div class="title text-center"> Prerequisite Knowledge </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            @include("partials/stemFilter")
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         {!! Form::open(['url' => 'search/name']) !!}
             @if (!count($concepts))
             {!! Form::text('searchString', null,
-                                   ['required',
-                                    'class'=>'form-control']) !!}
+                                   ['class'=>'form-control']) !!}
             @endif
 
             @if (count($concepts))
@@ -26,15 +31,6 @@
                                     'placeholder'=>'Enter search concept...']) !!}
             @endif
 
-            {{ Form::label('selectFilter', 'Filters') }}
-
-            &emsp;&emsp;
-
-            @foreach ( $filterOptions as $filter => $name )
-                {{ Form::checkbox( 'filters[]',
-                                  $filter) }}
-                {{ Form::label($filter,  $name) }}
-            @endforeach
 
             {!! Form::submit('Search', ['class' => 'btn btn-default btn-block',
                                                         'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Concept;
 use Illuminate\Http\Request;
+use Log;
 
 class SearchController extends Controller
 {
@@ -38,16 +39,15 @@ class SearchController extends Controller
     {
         $searchString = $request->input('searchString');
         $query = Concept::select();
-        $filters = $request->input('filters');
+        $filter = $request->input('filters');
 
-        if($filters != null) {
-            foreach ($filters as $filter) {
-                if ($filter != 'primary') {
-                    $query->where('stem', '=', $filter);
-                } elseif ($filter == 'primary') {
-                    $query->where('status', '=', $filter);
-                }
+        if($filter != null) {
+            if ($filter != 'primary') {
+                $query->where('stem', '=', $filter);
+            } elseif ($filter == 'primary') {
+                $query->where('status', '=', $filter);
             }
+            
             $query->where('name', 'LIKE', '%' . $searchString . '%');
             $concepts = $query->get();
         }
