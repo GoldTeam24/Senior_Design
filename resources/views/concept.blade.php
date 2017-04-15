@@ -58,18 +58,12 @@
         <h2>Processes</h2>
 
 
-        @php ($hasUnhiddenProcesses = false)
-    @foreach ($processes as $process)
-        @if ($process->on_off == true)
-                <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a> - <span style="color: green">ON</span></h4>
+        @foreach ($processes as $process)
+                <h4><a href="{{ route('process.show', array('id' => $process->id)) }}">{{ $process->name }}</a></h4>
                 <p>{{ $process->description }}</p>
-                @php($hasUnhiddenProcesses = true)
-            @endif
         @endforeach
 
-        @if (count($processes) == 0 and !$hasUnhiddenProcesses)
-            <p> No active processes ... </p>
-        @elseif (count($processes) == 0)
+        @if (count($processes) == 0)
             <p> No processes exist for this concept ... </p>
         @endif
 
