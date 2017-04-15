@@ -65,7 +65,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img alt={{asset('resources/assets/images/image.png')}}>
+                    <img src="{{url('/img/treeOfKnowledge.png')}}">
                 </a>
             </div>
 
