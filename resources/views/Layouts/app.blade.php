@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Prerequisite Knowledge</title>
+    <title>Tree of Knowledge</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:100,600">
@@ -13,7 +13,6 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/um-theme.css') }}">
 
     {{-- JavaScript --}}
     <script src="{{ asset('js/vendor/jquery.js') }}"></script>
@@ -27,7 +26,6 @@
     </style>
     <style>
         html, body {
-            background-color: #fff
             margin: 0;
         }
 
@@ -67,7 +65,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img alt="Brand" src="https://umdearborn.edu/logo.png">
+                    <img alt="Brand" src="https://cdn.pixabay.com/photo/2014/12/22/00/07/tree-576847_960_720.png">
                 </a>
             </div>
 
@@ -81,8 +79,8 @@
                     <li>
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li><a href="{{ url('/register') }}">Register User</a></li>
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
