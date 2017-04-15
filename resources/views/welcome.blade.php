@@ -21,7 +21,7 @@
         	{!! Form::text('searchString', null,
                                    ['required',
                                     'class'=>'form-control',
-                                    'placeholder'=>'Enter search concept...']) !!}
+                                    'placeholder'=>'Enter concept name...']) !!}
 
         <br>
 
