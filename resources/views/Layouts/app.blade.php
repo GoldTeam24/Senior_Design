@@ -48,8 +48,8 @@
         }
 
         a.navbar-brand img {
-            height: 55px;
-            width: 65px;
+            height: auto;
+            width: 45px;
         }
     </style>
 </head>
