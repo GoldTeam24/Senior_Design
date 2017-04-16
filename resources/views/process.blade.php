@@ -31,12 +31,12 @@
     <div class="col-xs-12">
         <h1 class="page-header"> 
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-12 col-sm-8">
                     {{ $process->name }} 
                 </div>
 
-                <div class="col-xs-4">
-                     @if (Auth::check())
+                <div class="col-xs-12 col-sm-4">
+                     @if (Auth::check() && Auth::user()->isAdmin())
                         {{ Form::open(['method' => 'DELETE', 'route' => ['process.destroy', $process->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process?")']) }}
                             <div class="pull-right" role="group">
                                 <a class="btn btn-default" href="{{ route('process.edit', array('id' => $process->id)) }}">
@@ -51,11 +51,14 @@
             </div>
         </h1>
 
-        <h4> {{ $process->description }} </h4>
+        {!! $process->description !!}
     </div>
 </div>
 <div class="row">
-    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'has-media' : '' }}">
+    <?php $bladeView = $process; ?>
+    @include('partials/youtube')
+
+    <div id="process-step-col" class="col-xs-12 col-sm-6 {{ $process->youtube ? 'col-sm-pull-6 has-media' : '' }}">
         <h2>Process Steps</h2>
         
         @if (count($processSteps) == 0)
@@ -68,10 +71,10 @@
                     <div class="col-xs-12 col-sm-9">
                         <h4> {{ $processStep->step }}. {{ $processStep->name }} - <span style="color: green">ON</span>
                         </h4>
-                        <p> {{ $processStep->description }} </p>
+                        {!! $processStep->description !!}
                     </div>
                     <div class="col-xs-12 col-sm-3">
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user()->isAdmin())
                             {{ Form::open(['method' => 'DELETE', 'route' => ['processStep.destroy', $processStep->id], 'onsubmit' => 'return confirm("Are you sure you want to delete this process step?")']) }}
                                 <div class="pull-right" role="group">
                                     <a class="btn btn-default" href="{{ route('editProcessStep', array('id' => $processStep->id, 'processName' => $process->name)) }}">Edit</a>
@@ -81,16 +84,48 @@
                             {{ Form::close() }}
                         @endif
                     </div>
+                    <br>
+                    <div class="col-xs-12 col-sm-9">
+                        @if (count($processStep->files))
+                        <table class="table table-hover">
+                                <tbody>
+                            @foreach($processStep->files as $file)
+                            
+                                <tr>
+                                    <td>{{ $file->file_name }}</td>
+                                    <td style="width: 88px"> {{ Form::open(['route' => 'downloadProcessStepFile']) }}
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            {{ Form::submit('Download', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                {{ Form::close() }}
+                                @if (Auth::check()&& Auth::user()->isAdmin())
+                                    {{ Form::open(['route' => 'deleteProcessStepFile']) }}
+                                    <td style="width: 68px">
+                                        <div class="pull-right" role="group">
+                                            <input type="hidden" name="fileId" value="{{ $file->id }}">
+                                            <input type="hidden" name="processId" value="{{ $process->id }}">
+                                            {{ Form::submit('Delete', ['class' => 'btn btn-default']) }}
+                                        </div>
+                                    </td>
+                                    {{ Form::close() }}
+                                @endif
+                                </tr>
+                               
+                            @endforeach
+                             </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         @endif
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a id="add-process-btn" class="btn btn-default" href="{{  route('createProcessStep', ['processId' => $process->id, 'processName' => $process->name, 'step' => $nextStepNumber]) }}">Add a process step</a>
         @endif
     </div>
 
-    <?php $bladeView = $process ?>
-    @include('partials/youtube')
 </div>
 @stop

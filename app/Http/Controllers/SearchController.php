@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Concept;
-use Request;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -20,8 +20,14 @@ class SearchController extends Controller
         $searchString = 'Search for a concept';
 
         $isSearched = false;
+
+        $filterOptions = array( 'science' => 'Science',
+            'technology' => "Technology",
+            'engineering' => 'Engineering',
+            'mathematics' => 'Mathematics',
+            'primary' => 'Primary');
         
-        return view('search', compact('concepts', 'searchString', 'isSearched'));
+        return view('search', compact('concepts', 'searchString', 'isSearched', 'filterOptions'));
     }
     /**
      * Show the form for creating a new resource.
@@ -30,13 +36,39 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-        //
-        $searchString = Request::input('searchString');
+        $searchString = $request->input('searchString');
+        $query = Concept::select();
+        $filters = $request->input('filters');
 
-        $concepts = Concept::where('name', 'LIKE', '%' . $searchString . '%')->get();
+        if($filters != null) {
+            foreach ($filters as $filter) {
+                if ($filter != 'primary') {
+                    $query->where('stem', '=', $filter);
+                } elseif ($filter == 'primary') {
+                    $query->where('status', '=', $filter);
+                }
+            }
+            $query->where('name', 'LIKE', '%' . $searchString . '%');
+            $concepts = $query->get();
+        }
+        else {
+            $concepts = Concept::where('name', 'LIKE', '%' . $searchString . '%')->get();
+        }
 
         $isSearched = true;
 
-        return view('search', compact('concepts', 'searchString', 'isSearched'));
+        $filterOptions = array( 'science' => 'Science',
+            'technology' => "Technology",
+            'engineering' => 'Engineering',
+            'mathematics' => 'Mathematics',
+            'primary' => 'Primary');
+
+        return view('search', compact( 'concepts', 'searchString', 'isSearched', 'filterOptions'));
+    }
+
+    public function openConcept(Request $request) {
+        $concept = Concept::find($request::input('conceptId'));
+
+        return redirect()->route('concept.show', array('id' => $concept->id));
     }
 }

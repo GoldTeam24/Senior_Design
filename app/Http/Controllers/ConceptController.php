@@ -40,6 +40,7 @@ class ConceptController extends Controller
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->stem = $request['stem'];
         $concept->youtube = $request['youtube'];
         
         $concept->save();
@@ -88,6 +89,7 @@ class ConceptController extends Controller
         $concept->name = $request['name'];
         $concept->description = $request['description'];
         $concept->body = $request['body'];
+        $concept->stem = $request['stem'];
         $concept->youtube = $request['youtube'];
 
         $concept->save();

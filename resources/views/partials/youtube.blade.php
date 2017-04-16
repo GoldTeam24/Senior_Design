@@ -1,5 +1,5 @@
 @if($bladeView->youtube)
-        <div id="media-col" class="col-xs-12 col-sm-6">
+        <div id="media-col" class="col-xs-12 col-sm-push-6 col-sm-6">
             <h2> Media </h2>
 
             <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->

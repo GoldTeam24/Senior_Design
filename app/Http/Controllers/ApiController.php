@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Process;
+use App\Models\ProcessStep;
 use Illuminate\Http\Request;
 use App\Models\Concept;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +18,27 @@ class ApiController extends Controller
     public function index()
     {
         $concepts = Concept::all();
+        $processes = Process::all();
+        $processStep = ProcessStep::all();
+        return response()->json([$concepts, $processes, $processStep]);
+    }
+
+    public function indexConcept()
+    {
+        $concepts = Concept::all();
         return response()->json($concepts);
+    }
+
+    public function indexProcess()
+    {
+        $process = Process::all();
+        return response()->json($process);
+    }
+
+    public function indexProcessStep()
+    {
+        $processSteps = ProcessStep::all();
+        return response()->json($processSteps);
     }
 
     /**
@@ -53,6 +75,33 @@ class ApiController extends Controller
         }
         else $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
         return response()->json($concepts);
+    }
+
+    public function showConcepts($id)
+    {
+        if(is_numeric($id)) {
+            $concepts = DB::table('concepts')->where('id', $id)->first();
+        }
+        else $concepts = Concept::where('name', 'LIKE', '%' . $id . '%')->get();
+        return response()->json($concepts);
+    }
+
+    public function showProcesses($id)
+    {
+        if(is_numeric($id)) {
+            $processes = DB::table('processes')->where('id', $id)->first();
+        }
+        else $processes = Process::where('name', 'LIKE', '%' . $id . '%')->get();
+        return response()->json($processes);
+    }
+
+    public function showProcessSteps($id)
+    {
+        if(is_numeric($id)) {
+            $processSteps = DB::table('process_steps')->where('id', $id)->first();
+        }
+        else $processSteps = ProcessStep::where('name', 'LIKE', '%' . $id . '%')->get();
+        return response()->json($processSteps);
     }
 
     /**

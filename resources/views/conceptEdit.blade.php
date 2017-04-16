@@ -18,12 +18,27 @@
                     
                     <div class="form-group">
                         {{ Form::label('description', 'Description:')}}
-                        {{ Form::textarea('description', null, ['class' => 'form-control']) }}
+                        {{ Form::text('description', null, ['class' => 'form-control']) }}
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('body', 'Body:')}}
                         {{ Form::textarea('body', null, ['class' => 'form-control']) }}
+                    </div>
+                    <script type="text/javascript">
+                        CKEDITOR.replace( 'body' );
+                    </script>
+
+                    <div class="form-group">
+                        {{ Form::label('stem', 'STEM Field:')}}
+                        {{ Form::select('stem',
+                            ['none' => 'None',
+                            'science' => 'Science',
+                            'technology' => 'Technology',
+                            'engineering' => 'Engineering',
+                            'mathematics' => 'Mathematics',
+                            'primary' => 'Primary'], null,
+                        ['class' => 'form-control']) }}
                     </div>
 
                     <div class="form-group">

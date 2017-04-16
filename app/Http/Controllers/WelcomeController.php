@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Validator;
-use Illuminate\Database\QueryException;
+use App\Models\Concept;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::find(Auth::user()->id);
-        return view('user', compact('userInfo'));
-        //return response()->json($user);
+        $concepts = Concept::where('status', '=', 'primary')->orderBy('name')->pluck('name', 'id');
+        $filterOptions = array( 'science' => 'Science',
+            'technology' => "Technology",
+            'engineering' => 'Engineering',
+            'mathematics' => 'Mathematics',
+            'primary' => 'Primary');
+
+        return view('welcome', compact('concepts', 'filterOptions'));
     }
 
     /**
@@ -49,12 +52,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($userId)
+    public function show($id)
     {
-        $userInfo = User::find($userId);
-
-        return view('user', compact('userInfo'));
-        //return response()->json($user);
+        //
     }
 
     /**
@@ -65,8 +65,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $userInfo = User::find($id);
-        return view('userEdit', compact('userInfo'));
+        //
     }
 
     /**
@@ -78,16 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validator($request->all())->validate();
-
-        $user = User::find($id);
-
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        
-        $user->save();
-        
-        return redirect()->route('user.index');
+        //
     }
 
     /**
@@ -98,23 +88,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect('/')->with('status', 'Account Successfully Deleted');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-        ]);
+        //
     }
 }
