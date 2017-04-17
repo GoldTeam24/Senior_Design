@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'justinhoyt24@gmail.com',
-        'name' => 'Prerequisite Knowledge',
+        'name' => 'Tree of Knowledge',
     ],
 
     /*
