@@ -89,13 +89,11 @@
         {!! Form::open(['url' => 'search/name']) !!}
             @include('partials/stemFilter')
             
-            <div> 
-                <h1 class="text-center"> Procedural Learning </h1>
-            </div>
+        <div class="title text-center"> Procedural Learning </div>
             
-            {!! Form::text('searchString', null,
-                           ['class'=>'form-control',
-                            'placeholder'=>'Enter search concept...']) !!}
+        {!! Form::text('searchString', null,
+                       ['class'=>'form-control',
+                        'placeholder'=>'Enter search concept...']) !!}
 
         {!! Form::submit('Search', ['class' => 'btn btn-default btn-block', 'style' => 'margin-top: 15px; max-width: 150px; margin: 15px auto;']) !!}
         {!! Form::close() !!}
