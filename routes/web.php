@@ -14,9 +14,9 @@
 use Illuminate\Support\Facades\Storage;
 
 // Root Route
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/home', function () {
+   return redirect('/');
+});
 Route::get('/', [ 'as' => 'indexWelcome', 'uses' => 'WelcomeController@index']);
 
 // Search Routes
