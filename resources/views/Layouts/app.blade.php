@@ -18,6 +18,7 @@
 
     {{-- JavaScript --}}
     <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
