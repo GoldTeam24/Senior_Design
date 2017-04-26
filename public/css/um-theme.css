@@ -29,3 +29,7 @@
     color: #FFFFFF;
     text-decoration: underline;
 }
+
+.panel-umich > .panel-heading .row .filter-type {
+    color: #9fc4f9;
+}
